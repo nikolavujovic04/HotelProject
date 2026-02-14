@@ -30,6 +30,19 @@ public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEn
                     .append(entity.getTableName())
                     .append(" ( ").append(entity.getColumnNameForInsert()).append(")")
                     .append(" VALUES (").append(entity.getInsertValues()).append(")");
+            String query = sb.toString();
+            System.out.println(query);
+            
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rsKey = statement.getGeneratedKeys();
+            if(rsKey.next()){
+                Long id = rsKey.getLong(1);
+                entity.setId(id);
+            }
+            
+            statement.close();
+            rsKey.close();
         }catch (SQLException ex){
            ex.printStackTrace();
            throw ex;

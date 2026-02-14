@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Nikola
  */
-public class Osoba {
+public class Osoba implements GenericEntity{
     
     private long id;
     private String imePrezime;
@@ -82,6 +82,33 @@ public class Osoba {
     @Override
     public String toString() {
         return this.imePrezime;
+    }
+
+    @Override
+    public String getTableName() {
+        return "osoba";
+    }
+
+    @Override
+    public String getColumnNameForInsert() {
+        return "imePrezime,email,brojTelefona,idKategorije";
+    }
+
+    @Override
+    public String getInsertValues() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(id).append(",")
+                .append("'").append(imePrezime).append("'").append(",")
+                .append("'").append(email).append("'").append(",")
+                .append("'").append(brojTelefona).append("'").append(",")
+                .append(kategorija.getId());
+        
+        return sb.toString();
+    }
+
+    @Override
+    public void setId(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

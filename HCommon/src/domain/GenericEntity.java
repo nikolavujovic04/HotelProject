@@ -16,7 +16,7 @@ public interface GenericEntity extends Serializable{
     String getTableName();
     String getColumnNameForInsert();
     String getInsertValues();
-    
+    void setId(Long id);
     
     String selectColumns();
     String alijas();
@@ -29,4 +29,10 @@ public interface GenericEntity extends Serializable{
     String updateUslov();
     void popuniPreparedStatement(PreparedStatement ps) throws SQLException;
     GenericEntity napuni(ResultSet rs) throws SQLException;
+
+    public void setId(Long id);
+
+    public void setId(Long id);
+
+    public void setId(Long id);
 }
