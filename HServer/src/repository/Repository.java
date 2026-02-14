@@ -9,8 +9,10 @@ import java.util.List;
 /**
  *
  * @author Nikola
+ * @param <T>
+ * @param <K>
  */
-interface Repository<T, K> {
+public interface Repository<T, K> {
     List<T> getAll() throws Exception;
     void add(T t) throws Exception;
     void edit(T t) throws Exception;

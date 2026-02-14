@@ -4,6 +4,7 @@
  */
 package domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.*;
 
@@ -11,8 +12,12 @@ import java.sql.*;
  *
  * @author Nikola
  */
-public interface GenericEntity {
-    String tableName();
+public interface GenericEntity extends Serializable{
+    String getTableName();
+    String getColumnNameForInsert();
+    String getInsertValues();
+    
+    
     String selectColumns();
     String alijas();
     String insertColumns();
