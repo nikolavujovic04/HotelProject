@@ -55,8 +55,15 @@ public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEn
     }
 
     @Override
-    public void delete(GenericEntity t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(GenericEntity entity) throws Exception {
+        Connection connection = DbConnectionFactory.getInstance().getConnection();
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM ")
+                .append(entity.getTableName())
+                .append("WHERE ")
+                .append(entity.getIdName())
+                .append("=")
+                .append(entity.getIdValue());
     }
 
     @Override

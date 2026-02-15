@@ -16,9 +16,11 @@ public interface GenericEntity extends Serializable{
     String getTableName();
     String getColumnNameForInsert();
     String getInsertValues();
+    String getIdName();
+    Long getIdValue();
     void setId(Long id);
     
-    String selectColumns();
+    /*String selectColumns();
     String alijas();
     String insertColumns();
     String vrednostiZaInsert();
@@ -28,11 +30,5 @@ public interface GenericEntity extends Serializable{
     String updateVrednosti();
     String updateUslov();
     void popuniPreparedStatement(PreparedStatement ps) throws SQLException;
-    GenericEntity napuni(ResultSet rs) throws SQLException;
-
-    public void setId(Long id);
-
-    public void setId(Long id);
-
-    public void setId(Long id);
+    GenericEntity napuni(ResultSet rs) throws SQLException;*/
 }
