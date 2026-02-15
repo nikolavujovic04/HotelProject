@@ -13,7 +13,7 @@ import java.util.List;
  * @param <K>
  */
 public interface Repository<T, K> {
-    List<T> getAll() throws Exception;
+    List<T> getAll(T t) throws Exception;
     void add(T t) throws Exception;
     void edit(T t) throws Exception;
     void delete(T t) throws Exception;

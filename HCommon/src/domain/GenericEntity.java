@@ -14,11 +14,13 @@ import java.sql.*;
  */
 public interface GenericEntity extends Serializable{
     String getTableName();
+    String getColumnNameForSelect();
     String getColumnNameForInsert();
     String getInsertValues();
     String getIdName();
     Long getIdValue();
     void setId(Long id);
+    GenericEntity getEntityFromResultSet(ResultSet rs);
     
     /*String selectColumns();
     String alijas();

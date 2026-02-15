@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Nikola
@@ -119,6 +121,24 @@ public class Osoba implements GenericEntity{
     @Override
     public Long getIdValue() {
         return this.id;
+    }
+
+    @Override
+    public String getColumnNameForSelect() {
+        return "ime,prezime,email,brojTelefona,idKategorijaOsobe";
+    }
+
+    @Override
+    public GenericEntity getEntityFromResultSet(ResultSet rs) {
+        try {
+            KategorijaOsobe categorie = new KategorijaOsobe();
+            categorie.setId(rs.getLong("idKategorijaOsobe"));
+            return new Osoba(rs.getLong("idOsoba"),rs.getString("imePrezime"), rs.getString("email"), rs.getString("brojTelefona"), categorie);
+        } catch (SQLException ex) {
+            Logger.getLogger(Osoba.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 
     

@@ -8,6 +8,7 @@ import db.DbRepository;
 import domain.GenericEntity;
 import java.util.List;
 import java.sql.*;
+import java.util.ArrayList;
 import repository.db.DbConnectionFactory;
 
 /**
@@ -17,8 +18,19 @@ import repository.db.DbConnectionFactory;
 public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEntity, Long>{
 
     @Override
-    public List<GenericEntity> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<GenericEntity> getAll(GenericEntity entity) throws Exception {
+        Connection connection = DbConnectionFactory.getInstance().getConnection();
+        List<GenericEntity> entities = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM ").append(entity.getTableName());
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(sb.toString());
+        while(rs.next()){
+            entities.add(entity.getEntityFromResultSet(rs));
+        }
+        rs.close();
+        statement.close();
+        return entities;
     }
 
     @Override
@@ -56,19 +68,40 @@ public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEn
 
     @Override
     public void delete(GenericEntity entity) throws Exception {
-        Connection connection = DbConnectionFactory.getInstance().getConnection();
-        StringBuilder sb = new StringBuilder();
-        sb.append("DELETE FROM ")
-                .append(entity.getTableName())
-                .append("WHERE ")
-                .append(entity.getIdName())
-                .append("=")
-                .append(entity.getIdValue());
+        try{
+            Connection connection = DbConnectionFactory.getInstance().getConnection();
+            StringBuilder sb = new StringBuilder();
+            sb.append("DELETE FROM ")
+                    .append(entity.getTableName())
+                    .append(" WHERE ")
+                    .append(entity.getIdName())
+                    .append("=")
+                    .append(entity.getIdValue());
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sb.toString());
+            statement.close();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            throw ex;
+        }
+        
     }
 
     @Override
     public GenericEntity getById(Long k) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            Connection connection = DbConnectionFactory.getInstance().getConnection();
+            StringBuilder sb = new StringBuilder();
+            sb.append("SELECT ");
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            throw ex;
+        }
+        
+      return null;  
     }
     
 }
