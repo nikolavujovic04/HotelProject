@@ -19,19 +19,33 @@ public class DeletePersonSO extends AbstractSo{
     protected void precondition(Object param) throws Exception {
         if(param==null || !(param instanceof Person)){
             throw new Exception("Invalid param");
+        }else{
+            Person person = (Person) param;
+            checkValueConstraints(person);
         }
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        repository.delete((Person)param);
+    }
+    
+    private void checkValueConstraints(Person person) throws Exception{
+        boolean exists = checkReservation(person);
+        if(exists){
+            throw new Exception("Member with that ID has created reservation and can not be deleted. Try again.");
+        }
     }
     
     private boolean checkReservation(Person person) throws Exception{
         List<Reservation> reservations = repository.getAll(new Reservation());
         
         for (Reservation reservation : reservations) {
-            if(reservation.)
+            if(reservation.getPerson().getId() == person.getId()){
+                return true;
+            }
         }
+        
+        return false;
     }
 }
