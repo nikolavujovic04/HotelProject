@@ -12,16 +12,16 @@ import java.sql.SQLException;
  *
  * @author Nikola
  */
-public class Soba{
+public class Room{
     private Long id;
     private String tipSobe;
     private Double cena;
     private int kolicina;
 
-    public Soba() {
+    public Room() {
     }
 
-    public Soba(Long id, String tipSobe, Double cena, int kolicina) {
+    public Room(Long id, String tipSobe, Double cena, int kolicina) {
         this.id = id;
         this.tipSobe = tipSobe;
         this.cena = cena;

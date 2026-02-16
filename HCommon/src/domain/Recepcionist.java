@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  * @author Nikola
  */
-public class Recepcionar{
+public class Recepcionist{
     private long idRecepcionar;
     private String imePrezime;
     private String prezime;
@@ -21,10 +21,10 @@ public class Recepcionar{
     private String sifra;
     private String brojTelefona;
 
-    public Recepcionar() {
+    public Recepcionist() {
     }
 
-    public Recepcionar(long idRecepcionar, String imePrezime, String prezime, String jmbg, String korisnickoIme, String sifra, String brojTelefona) {
+    public Recepcionist(long idRecepcionar, String imePrezime, String prezime, String jmbg, String korisnickoIme, String sifra, String brojTelefona) {
         this.idRecepcionar = idRecepcionar;
         this.imePrezime = imePrezime;
         this.prezime = prezime;

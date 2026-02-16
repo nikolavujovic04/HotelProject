@@ -10,7 +10,7 @@ import java.time.LocalDate;
  *
  * @author Nikola
  */
-public class Rezervacija {
+public class Reservation {
     private long idRezervacija;
     private LocalDate datumOd;
     private LocalDate datumDo;
@@ -20,10 +20,10 @@ public class Rezervacija {
     private long idRecepcionar;
     private long idOsoba;
 
-    public Rezervacija() {
+    public Reservation() {
     }
 
-    public Rezervacija(long idRezervacija, LocalDate datumOd, LocalDate datumDo, int brojDana, double cenaSaPopustom, String tipRezervacije, long idRecepcionar, long idOsoba) {
+    public Reservation(long idRezervacija, LocalDate datumOd, LocalDate datumDo, int brojDana, double cenaSaPopustom, String tipRezervacije, long idRecepcionar, long idOsoba) {
         this.idRezervacija = idRezervacija;
         this.datumOd = datumOd;
         this.datumDo = datumDo;

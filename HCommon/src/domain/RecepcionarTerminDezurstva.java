@@ -12,13 +12,13 @@ import java.time.LocalDate;
  */
 public class RecepcionarTerminDezurstva {
     private LocalDate datumDezurstva;
-    private Recepcionar recepcionarId;
+    private Recepcionist recepcionarId;
     private TerminDezustva terminDezurstvaId;
 
     public RecepcionarTerminDezurstva() {
     }
 
-    public RecepcionarTerminDezurstva(LocalDate datumDezurstva, Recepcionar recepcionarId, TerminDezustva terminDezurstvaId) {
+    public RecepcionarTerminDezurstva(LocalDate datumDezurstva, Recepcionist recepcionarId, TerminDezustva terminDezurstvaId) {
         this.datumDezurstva = datumDezurstva;
         this.recepcionarId = recepcionarId;
         this.terminDezurstvaId = terminDezurstvaId;
@@ -32,11 +32,11 @@ public class RecepcionarTerminDezurstva {
         this.datumDezurstva = datumDezurstva;
     }
 
-    public Recepcionar getRecepcionarId() {
+    public Recepcionist getRecepcionarId() {
         return recepcionarId;
     }
 
-    public void setRecepcionarId(Recepcionar recepcionarId) {
+    public void setRecepcionarId(Recepcionist recepcionarId) {
         this.recepcionarId = recepcionarId;
     }
 

@@ -12,15 +12,15 @@ import java.sql.SQLException;
  *
  * @author Nikola
  */
-public class KategorijaOsobe{
+public class PersonCategorie{
     private long id;
     private String tipOsobe;
     private double popust;
 
-    public KategorijaOsobe() {
+    public PersonCategorie() {
     }
 
-    public KategorijaOsobe(long id, String tipOsobe, double popust) {
+    public PersonCategorie(long id, String tipOsobe, double popust) {
         this.id = id;
         this.tipOsobe = tipOsobe;
         this.popust = popust;

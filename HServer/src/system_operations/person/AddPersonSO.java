@@ -2,20 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package system_operations.recepcionist;
+package system_operations.person;
 
-import domain.Recepcionist;
+import domain.Person;
 import system_operations.AbstractSo;
 
 /**
  *
  * @author Nikola
  */
-public class LoginSo extends AbstractSo{
+public class AddPersonSO extends AbstractSo{
 
+    public AddPersonSO() {
+    }
+
+    
     @Override
     protected void precondition(Object param) throws Exception {
-        if(param!=null && param instanceof Recepcionist)
+        if(param == null || !(param instanceof Person)){
+            
+        }
     }
 
     @Override

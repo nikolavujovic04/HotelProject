@@ -15,18 +15,18 @@ import java.util.logging.Logger;
  *
  * @author Nikola
  */
-public class Osoba implements GenericEntity{
+public class Person implements GenericEntity{
     
     private long id;
     private String imePrezime;
     private String email;
     private String brojTelefona;
-    private KategorijaOsobe kategorija;
+    private PersonCategorie kategorija;
 
-    public Osoba() {
+    public Person() {
     }
 
-    public Osoba(long id, String imePrezime, String email, String brojTelefona, KategorijaOsobe kategorija) {
+    public Person(long id, String imePrezime, String email, String brojTelefona, PersonCategorie kategorija) {
         this.id = id;
         this.imePrezime = imePrezime;
         this.email = email;
@@ -34,7 +34,7 @@ public class Osoba implements GenericEntity{
         this.kategorija = kategorija;
     }
 
-    public Osoba(String imePrezime, String email, String brojTelefona, KategorijaOsobe kategorija) {
+    public Person(String imePrezime, String email, String brojTelefona, PersonCategorie kategorija) {
         this.imePrezime = imePrezime;
         this.email = email;
         this.brojTelefona = brojTelefona;
@@ -73,11 +73,11 @@ public class Osoba implements GenericEntity{
         this.brojTelefona = brojTelefona;
     }
 
-    public KategorijaOsobe getKategorija() {
+    public PersonCategorie getKategorija() {
         return kategorija;
     }
 
-    public void setKategorija(KategorijaOsobe kategorija) {
+    public void setKategorija(PersonCategorie kategorija) {
         this.kategorija = kategorija;
     }
 
@@ -131,11 +131,11 @@ public class Osoba implements GenericEntity{
     @Override
     public GenericEntity getEntityFromResultSet(ResultSet rs) {
         try {
-            KategorijaOsobe categorie = new KategorijaOsobe();
+            PersonCategorie categorie = new PersonCategorie();
             categorie.setId(rs.getLong("idKategorijaOsobe"));
-            return new Osoba(rs.getLong("idOsoba"),rs.getString("imePrezime"), rs.getString("email"), rs.getString("brojTelefona"), categorie);
+            return new Person(rs.getLong("idOsoba"),rs.getString("imePrezime"), rs.getString("email"), rs.getString("brojTelefona"), categorie);
         } catch (SQLException ex) {
-            Logger.getLogger(Osoba.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return null;
