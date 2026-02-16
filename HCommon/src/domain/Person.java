@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -18,29 +19,24 @@ import java.util.logging.Logger;
 public class Person implements GenericEntity{
     
     private long id;
-    private String imePrezime;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String brojTelefona;
-    private PersonCategorie kategorija;
+    private String phoneNumber;
+    private PersonCategorie categorie;
 
     public Person() {
     }
 
-    public Person(long id, String imePrezime, String email, String brojTelefona, PersonCategorie kategorija) {
+    public Person(long id, String firstName, String lastName, String email, String phoneNumber, PersonCategorie categorie) {
         this.id = id;
-        this.imePrezime = imePrezime;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.brojTelefona = brojTelefona;
-        this.kategorija = kategorija;
+        this.phoneNumber = phoneNumber;
+        this.categorie = categorie;
     }
-
-    public Person(String imePrezime, String email, String brojTelefona, PersonCategorie kategorija) {
-        this.imePrezime = imePrezime;
-        this.email = email;
-        this.brojTelefona = brojTelefona;
-        this.kategorija = kategorija;
-    }
-
+    
     public long getId() {
         return id;
     }
@@ -49,12 +45,20 @@ public class Person implements GenericEntity{
         this.id = id;
     }
 
-    public String getImePrezime() {
-        return imePrezime;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setImePrezime(String imePrezime) {
-        this.imePrezime = imePrezime;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -65,25 +69,20 @@ public class Person implements GenericEntity{
         this.email = email;
     }
 
-    public String getBrojTelefona() {
-        return brojTelefona;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setBrojTelefona(String brojTelefona) {
-        this.brojTelefona = brojTelefona;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public PersonCategorie getKategorija() {
-        return kategorija;
+    public PersonCategorie getCategorie() {
+        return categorie;
     }
 
-    public void setKategorija(PersonCategorie kategorija) {
-        this.kategorija = kategorija;
-    }
-
-    @Override
-    public String toString() {
-        return this.imePrezime;
+    public void setCategorie(PersonCategorie categorie) {
+        this.categorie = categorie;
     }
 
     @Override
@@ -100,10 +99,11 @@ public class Person implements GenericEntity{
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
         sb.append(id).append(",")
-                .append("'").append(imePrezime).append("'").append(",")
+                .append("'").append(firstName).append("'").append(",")
+                .append("'").append(lastName).append("'").append(",")
                 .append("'").append(email).append("'").append(",")
-                .append("'").append(brojTelefona).append("'").append(",")
-                .append(kategorija.getId());
+                .append("'").append(phoneNumber).append("'").append(",")
+                .append(categorie.getId());
         
         return sb.toString();
     }
@@ -133,13 +133,74 @@ public class Person implements GenericEntity{
         try {
             PersonCategorie categorie = new PersonCategorie();
             categorie.setId(rs.getLong("idKategorijaOsobe"));
-            return new Person(rs.getLong("idOsoba"),rs.getString("imePrezime"), rs.getString("email"), rs.getString("brojTelefona"), categorie);
+            return new Person(rs.getLong("idOsoba"),rs.getString("ime"), rs.getString("prezime"),rs.getString("email"), rs.getString("brojTelefona"), categorie);
         } catch (SQLException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return null;
     }
+
+    @Override
+    public boolean checkValues() throws Exception {
+        if(this.firstName.isEmpty()){
+            throw new Exception("Person name is empty!");
+        }
+        
+        if(this.lastName.isEmpty()){
+            throw new Exception("Person lastname is empty!");
+        }
+        
+        if(this.email.isEmpty()){
+            throw new Exception("Person email is empty!");
+        }
+        
+        if(this.phoneNumber.isEmpty()){
+            throw new Exception("Person phone number is empty!");
+        }
+        
+        return true;
+    }
+
+    @Override
+    public boolean equalsWithoutID(Object object) {
+        if(this == object){
+            return true;
+        }
+        
+        if(object == null){
+            return false;
+        }
+        
+        if(getClass() != object.getClass()){
+            return false;
+        }
+        
+        final Person person = (Person) object;
+        
+        if(!Objects.equals(this.firstName, person.firstName)){
+            return false;
+        }
+        
+        if(!Objects.equals(this.lastName, person.lastName)){
+            return false;
+        }
+        
+        if(!Objects.equals(this.email, person.email)){
+            return false;
+        }
+        
+        if(!Objects.equals(this.phoneNumber, person.phoneNumber)){
+            return false;
+        }
+        
+        if(!Objects.equals(this.categorie.getTipOsobe(), person.getCategorie().getTipOsobe())){
+            return false;
+        }
+        
+        return true;
+    }
+
 
     
     

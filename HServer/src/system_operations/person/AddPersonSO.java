@@ -5,6 +5,7 @@
 package system_operations.person;
 
 import domain.Person;
+import java.util.List;
 import system_operations.AbstractSo;
 
 /**
@@ -20,13 +21,39 @@ public class AddPersonSO extends AbstractSo{
     @Override
     protected void precondition(Object param) throws Exception {
         if(param == null || !(param instanceof Person)){
-            
-        }
+            throw new Exception("Invalid param");
+        }else{
+            Person person = (Person) param;
+            person.checkValues();
+            checkValueConstraints(person);
+        }   
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        repository.add((Person)param);
+    }
+    
+    private void checkValueConstraints(Person person) throws Exception{
+        boolean exists = checkIfExists(person);
+        
+        if(exists){
+            throw new Exception("Person with that ID alredy exists. Try again");
+        }
+    }
+    
+    private boolean checkIfExists(Person person) throws Exception{
+        List<Person> persons = repository.getAll(person);
+        
+        for (Person check : persons) {
+            if(check!=null){
+                if(check.equalsWithoutID(person)){
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
     
 }

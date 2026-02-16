@@ -21,7 +21,8 @@ public interface GenericEntity extends Serializable{
     Long getIdValue();
     void setId(Long id);
     GenericEntity getEntityFromResultSet(ResultSet rs);
-    
+    boolean checkValues() throws Exception;
+    boolean equalsWithoutID(Object object);
     /*String selectColumns();
     String alijas();
     String insertColumns();
