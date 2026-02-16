@@ -12,38 +12,34 @@ import system_operations.AbstractSo;
  *
  * @author Nikola
  */
-public class AddPersonSO extends AbstractSo{
+public class EditPersonSO extends AbstractSo{
 
-    public AddPersonSO() {
-    }
-
-    
     @Override
     protected void precondition(Object param) throws Exception {
         if(param == null || !(param instanceof Person)){
-            throw new Exception("Invalid param");
-        }else{
+            throw new Exception("Invalid param. Try again");
+        }
+        else{
             Person person = (Person) param;
-            person.checkValues();
             checkValueConstraints(person);
-        }   
+        }     
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.add((Person)param);
+        repository.edit((Person) param);
     }
     
     private void checkValueConstraints(Person person) throws Exception{
         boolean exists = checkIfExists(person);
         
         if(exists){
-            throw new Exception("Person with that email or phone number alredy exists. Try again");
+            throw new Exception("Person with that email or phone number alredy exists");
         }
     }
     
     private boolean checkIfExists(Person person) throws Exception{
-        List<Person> persons = repository.getAll(person);
+        List<Person> persons = repository.getAll(new Person());
         
         for (Person check : persons) {
             if(check!=null){

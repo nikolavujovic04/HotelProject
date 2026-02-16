@@ -178,23 +178,11 @@ public class Person implements GenericEntity{
         
         final Person person = (Person) object;
         
-        if(!Objects.equals(this.firstName, person.firstName)){
-            return false;
-        }
-        
-        if(!Objects.equals(this.lastName, person.lastName)){
-            return false;
-        }
-        
         if(!Objects.equals(this.email, person.email)){
             return false;
         }
         
         if(!Objects.equals(this.phoneNumber, person.phoneNumber)){
-            return false;
-        }
-        
-        if(!Objects.equals(this.categorie.getTipOsobe(), person.getCategorie().getTipOsobe())){
             return false;
         }
         
