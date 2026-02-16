@@ -11,92 +11,94 @@ import java.time.LocalDate;
  * @author Nikola
  */
 public class Reservation {
-    private long idRezervacija;
-    private LocalDate datumOd;
-    private LocalDate datumDo;
-    private int brojDana;
-    private double cenaSaPopustom;
-    private String tipRezervacije;
-    private long idRecepcionar;
-    private long idOsoba;
+    private long id;
+    private LocalDate dateFrom;
+    private LocalDate dateTo;
+    private int dayNumber;
+    private double discountPrise;
+    private String reservationType;
+    private Recepcionist recepcionist;
+    private Person person;
 
     public Reservation() {
     }
 
-    public Reservation(long idRezervacija, LocalDate datumOd, LocalDate datumDo, int brojDana, double cenaSaPopustom, String tipRezervacije, long idRecepcionar, long idOsoba) {
-        this.idRezervacija = idRezervacija;
-        this.datumOd = datumOd;
-        this.datumDo = datumDo;
-        this.brojDana = brojDana;
-        this.cenaSaPopustom = cenaSaPopustom;
-        this.tipRezervacije = tipRezervacije;
-        this.idRecepcionar = idRecepcionar;
-        this.idOsoba = idOsoba;
+    public Reservation(long id, LocalDate dateFrom, LocalDate dateTo, int dayNumber, double discountPrise, String reservationType, Recepcionist recepcionist, Person person) {
+        this.id = id;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.dayNumber = dayNumber;
+        this.discountPrise = discountPrise;
+        this.reservationType = reservationType;
+        this.recepcionist = recepcionist;
+        this.person = person;
     }
 
-    public long getIdRezervacija() {
-        return idRezervacija;
+    public long getId() {
+        return id;
     }
 
-    public void setIdRezervacija(long idRezervacija) {
-        this.idRezervacija = idRezervacija;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public LocalDate getDatumOd() {
-        return datumOd;
+    public LocalDate getDateFrom() {
+        return dateFrom;
     }
 
-    public void setDatumOd(LocalDate datumOd) {
-        this.datumOd = datumOd;
+    public void setDateFrom(LocalDate dateFrom) {
+        this.dateFrom = dateFrom;
     }
 
-    public LocalDate getDatumDo() {
-        return datumDo;
+    public LocalDate getDateTo() {
+        return dateTo;
     }
 
-    public void setDatumDo(LocalDate datumDo) {
-        this.datumDo = datumDo;
+    public void setDateTo(LocalDate dateTo) {
+        this.dateTo = dateTo;
     }
 
-    public int getBrojDana() {
-        return brojDana;
+    public int getDayNumber() {
+        return dayNumber;
     }
 
-    public void setBrojDana(int brojDana) {
-        this.brojDana = brojDana;
+    public void setDayNumber(int dayNumber) {
+        this.dayNumber = dayNumber;
     }
 
-    public double getCenaSaPopustom() {
-        return cenaSaPopustom;
+    public double getDiscountPrise() {
+        return discountPrise;
     }
 
-    public void setCenaSaPopustom(double cenaSaPopustom) {
-        this.cenaSaPopustom = cenaSaPopustom;
+    public void setDiscountPrise(double discountPrise) {
+        this.discountPrise = discountPrise;
     }
 
-    public String getTipRezervacije() {
-        return tipRezervacije;
+    public String getReservationType() {
+        return reservationType;
     }
 
-    public void setTipRezervacije(String tipRezervacije) {
-        this.tipRezervacije = tipRezervacije;
+    public void setReservationType(String reservationType) {
+        this.reservationType = reservationType;
     }
 
-    public long getIdRecepcionar() {
-        return idRecepcionar;
+    public Recepcionist getRecepcionist() {
+        return recepcionist;
     }
 
-    public void setIdRecepcionar(long idRecepcionar) {
-        this.idRecepcionar = idRecepcionar;
+    public void setRecepcionist(Recepcionist recepcionist) {
+        this.recepcionist = recepcionist;
     }
 
-    public long getIdOsoba() {
-        return idOsoba;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setIdOsoba(long idOsoba) {
-        this.idOsoba = idOsoba;
+    public void setPerson(Person person) {
+        this.person = person;
     }
+    
+    
     
     
 }
