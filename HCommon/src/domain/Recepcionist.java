@@ -13,49 +13,51 @@ import java.sql.SQLException;
  * @author Nikola
  */
 public class Recepcionist{
-    private long idRecepcionar;
-    private String imePrezime;
-    private String prezime;
+    private long idRecepcionist;
+    private String firstName;
+    private String lastName;
     private String jmbg;
-    private String korisnickoIme;
-    private String sifra;
-    private String brojTelefona;
+    private String username;
+    private String password;
+    private String phoneNumber;
+    private boolean logged;
 
     public Recepcionist() {
     }
 
-    public Recepcionist(long idRecepcionar, String imePrezime, String prezime, String jmbg, String korisnickoIme, String sifra, String brojTelefona) {
-        this.idRecepcionar = idRecepcionar;
-        this.imePrezime = imePrezime;
-        this.prezime = prezime;
+    public Recepcionist(long idRecepcionar, String firstName, String lastName, String jmbg, String username, String password, String phoneNumber, boolean logged) {
+        this.idRecepcionist = idRecepcionar;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.jmbg = jmbg;
-        this.korisnickoIme = korisnickoIme;
-        this.sifra = sifra;
-        this.brojTelefona = brojTelefona;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.logged = logged;
     }
 
-    public long getIdRecepcionar() {
-        return idRecepcionar;
+    public long getidRecepcionist() {
+        return idRecepcionist;
     }
 
-    public void setIdRecepcionar(long idRecepcionar) {
-        this.idRecepcionar = idRecepcionar;
+    public void setidRecepcionist(long idRecepcionist) {
+        this.idRecepcionist = idRecepcionist;
     }
 
-    public String getImePrezime() {
-        return imePrezime;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setImePrezime(String imePrezime) {
-        this.imePrezime = imePrezime;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPrezime() {
-        return prezime;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getJmbg() {
@@ -66,32 +68,37 @@ public class Recepcionist{
         this.jmbg = jmbg;
     }
 
-    public String getKorisnickoIme() {
-        return korisnickoIme;
+    public String getUsername() {
+        return username;
     }
 
-    public void setKorisnickoIme(String korisnickoIme) {
-        this.korisnickoIme = korisnickoIme;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getSifra() {
-        return sifra;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSifra(String sifra) {
-        this.sifra = sifra;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getBrojTelefona() {
-        return brojTelefona;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setBrojTelefona(String brojTelefona) {
-        this.brojTelefona = brojTelefona;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    @Override
-    public String toString() {
-        return this.imePrezime;
+    public boolean isLogged() {
+        return logged;
     }
+
+    public void setLogged(boolean logged) {
+        this.logged = logged;
+    }
+
+    
 }
