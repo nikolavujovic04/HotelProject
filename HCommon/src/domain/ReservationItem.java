@@ -8,16 +8,16 @@ package domain;
  *
  * @author Nikola
  */
-public class StavkaRezervacije {
+public class ReservationItem {
     private long rb;
     private long idRezervacija;
     private double iznos;
     private long idSoba;
 
-    public StavkaRezervacije() {
+    public ReservationItem() {
     }
 
-    public StavkaRezervacije(long rb, long idRezervacija, double iznos, long idSoba) {
+    public ReservationItem(long rb, long idRezervacija, double iznos, long idSoba) {
         this.rb = rb;
         this.idRezervacija = idRezervacija;
         this.iznos = iznos;
