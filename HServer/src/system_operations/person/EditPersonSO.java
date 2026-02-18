@@ -6,13 +6,13 @@ package system_operations.person;
 
 import domain.Person;
 import java.util.List;
-import system_operations.AbstractSo;
+import system_operations.AbstractGenericOperation;
 
 /**
  *
  * @author Nikola
  */
-public class EditPersonSO extends AbstractSo{
+public class EditPersonSO extends AbstractGenericOperation{
 
     @Override
     protected void precondition(Object param) throws Exception {

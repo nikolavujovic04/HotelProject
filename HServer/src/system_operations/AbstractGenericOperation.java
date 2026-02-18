@@ -14,10 +14,10 @@ import repository.db.impl.RepositoryDbGeneric;
  *
  * @author Nikola
  */
-public abstract class AbstractSo {
+public abstract class AbstractGenericOperation {
     protected final Repository repository;
     
-    public AbstractSo() {
+    public AbstractGenericOperation() {
         repository = new RepositoryDbGeneric();
     }
     
@@ -29,7 +29,7 @@ public abstract class AbstractSo {
             startTransaction(param);
             commitTransaction();            
         } catch (Exception ex) {
-            Logger.getLogger(AbstractSo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AbstractGenericOperation.class.getName()).log(Level.SEVERE, null, ex);
             rollbackTransaction();
         }
     }

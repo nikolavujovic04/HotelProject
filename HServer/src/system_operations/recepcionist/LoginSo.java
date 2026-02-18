@@ -7,13 +7,13 @@ package system_operations.recepcionist;
 import domain.Recepcionist;
 import java.util.List;
 import repository.db.impl.RepositoryDbRecepcionist;
-import system_operations.AbstractSo;
+import system_operations.AbstractGenericOperation;
 
 /**
  *
  * @author Nikola
  */
-public class LoginSo extends AbstractSo{
+public class LoginSo extends AbstractGenericOperation{
 
     Recepcionist currentRecepcionist;
     RepositoryDbRecepcionist repositoryRecepcionist;

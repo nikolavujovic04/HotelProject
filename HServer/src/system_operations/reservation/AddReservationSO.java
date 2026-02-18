@@ -7,13 +7,13 @@ package system_operations.reservation;
 import domain.Reservation;
 import domain.ReservationItem;
 import java.util.List;
-import system_operations.AbstractSo;
+import system_operations.AbstractGenericOperation;
 
 /**
  *
  * @author Nikola
  */
-public class AddReservationSO extends AbstractSo{
+public class AddReservationSO extends AbstractGenericOperation{
 
     @Override
     protected void precondition(Object param) throws Exception {

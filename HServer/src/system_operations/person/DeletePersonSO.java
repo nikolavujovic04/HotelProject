@@ -7,13 +7,13 @@ package system_operations.person;
 import domain.Person;
 import domain.Reservation;
 import java.util.List;
-import system_operations.AbstractSo;
+import system_operations.AbstractGenericOperation;
 
 /**
  *
  * @author Nikola
  */
-public class DeletePersonSO extends AbstractSo{
+public class DeletePersonSO extends AbstractGenericOperation{
 
     @Override
     protected void precondition(Object param) throws Exception {

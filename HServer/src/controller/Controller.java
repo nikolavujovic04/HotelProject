@@ -4,12 +4,17 @@
  */
 package controller;
 
+import domain.Person;
 import domain.Recepcionist;
 import java.util.List;
 import repository.Repository;
 import repository.db.DatabaseBroker;
 import repository.db.impl.RepositoryDbGeneric;
 import repository.db.impl.RepositoryDbRecepcionist;
+import system_operations.AbstractGenericOperation;
+import system_operations.person.AddPersonSO;
+import system_operations.person.DeletePersonSO;
+import system_operations.person.EditPersonSO;
 
 /**
  *
@@ -32,7 +37,7 @@ public class Controller {
         return instance;
     }
     
-    private Recepcionist login(Recepcionist recepcionist) throws Exception{
+    public Recepcionist login(Recepcionist recepcionist) throws Exception{
         List<Recepcionist> recepcionists = repositoryGeneric.getAll(new Recepcionist());
         
         for (Recepcionist check : recepcionists) {
@@ -47,4 +52,18 @@ public class Controller {
         return null;
     }
     
+    public void addPerson(Person person) throws Exception{      
+        AbstractGenericOperation operation = new AddPersonSO();
+        operation.execute(person);
+    }
+    
+    public void deletePerson(Person person) throws Exception{
+        AbstractGenericOperation operation = new DeletePersonSO();
+        operation.execute(person);
+    }
+    
+    public void editPerson(Person person) throws Exception{
+        AbstractGenericOperation operation = new EditPersonSO();
+        operation.execute(person);
+    }
 }
