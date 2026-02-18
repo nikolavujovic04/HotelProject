@@ -24,9 +24,8 @@ public abstract class AbstractGenericOperation {
     public void execute(Object param) throws Exception {
         try {
             precondition(param);
-            startTransaction(param);
+            startTransaction();
             executeOperation(param);
-            startTransaction(param);
             commitTransaction();            
         } catch (Exception ex) {
             Logger.getLogger(AbstractGenericOperation.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,8 +37,8 @@ public abstract class AbstractGenericOperation {
     
     protected abstract void executeOperation(Object param) throws Exception;
     
-    private void startTransaction(Object param) throws Exception{
-        ((DbRepository) repository).commit();
+    private void startTransaction() throws Exception{
+        ((DbRepository) repository).connect();
     }
     
     protected void commitTransaction() throws Exception {

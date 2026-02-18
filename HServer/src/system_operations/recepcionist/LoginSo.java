@@ -17,6 +17,11 @@ public class LoginSo extends AbstractGenericOperation{
 
     Recepcionist currentRecepcionist;
     RepositoryDbRecepcionist repositoryRecepcionist;
+
+    public LoginSo() {
+        repositoryRecepcionist = new RepositoryDbRecepcionist();
+    }
+    
     @Override
     protected void precondition(Object param) throws Exception {
         if(param!=null && param instanceof Recepcionist){

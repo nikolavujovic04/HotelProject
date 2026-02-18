@@ -15,6 +15,8 @@ import system_operations.AbstractGenericOperation;
 import system_operations.person.AddPersonSO;
 import system_operations.person.DeletePersonSO;
 import system_operations.person.EditPersonSO;
+import system_operations.recepcionist.LoginSo;
+import system_operations.recepcionist.LogutSo;
 
 /**
  *
@@ -37,19 +39,14 @@ public class Controller {
         return instance;
     }
     
-    public Recepcionist login(Recepcionist recepcionist) throws Exception{
-        List<Recepcionist> recepcionists = repositoryGeneric.getAll(new Recepcionist());
-        
-        for (Recepcionist check : recepcionists) {
-            if(check!=null){
-                if(check.getUsername().equals(recepcionist.getUsername())&&check.getPassword().equals(recepcionist.getPassword())){
-                    user.setUserLoggedIn(recepcionist);
-                    return check;
-                }
-            }
-        }
-        
-        return null;
+    public void login(Recepcionist recepcionist) throws Exception{
+        AbstractGenericOperation operation = new LoginSo();
+        operation.execute(recepcionist);
+    }
+    
+    public void logout(Recepcionist recepcionist) throws Exception{
+        AbstractGenericOperation operation = new LogutSo();
+        operation.execute(recepcionist);
     }
     
     public void addPerson(Person person) throws Exception{      

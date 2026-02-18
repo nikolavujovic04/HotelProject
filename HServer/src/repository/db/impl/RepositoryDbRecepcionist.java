@@ -50,7 +50,14 @@ public class RepositoryDbRecepcionist implements DbRepository<Recepcionist, Obje
     }
     
     public void setUserLoggedIn(Recepcionist currentRecepcionist) throws SQLException, IOException{
-        String query = "UPDATE admin SET logged=1 WHERE id=" + currentRecepcionist.getidRecepcionist();
+        String query = "UPDATE recepcionist SET logged=1 WHERE id=" + currentRecepcionist.getidRecepcionist();
+        Statement statement = DbConnectionFactory.getInstance().getConnection().createStatement();
+        statement.executeUpdate(query);
+        statement.close();
+    }
+    
+    public void setUserLoggedOut(Recepcionist currentRecepcionist) throws SQLException, IOException{
+        String query = "UPDATE recepcionist SET logged=0 WHERE id=" + currentRecepcionist.getidRecepcionist();
         Statement statement = DbConnectionFactory.getInstance().getConnection().createStatement();
         statement.executeUpdate(query);
         statement.close();
