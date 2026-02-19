@@ -125,7 +125,7 @@ public class Person implements GenericEntity{
 
     @Override
     public String getColumnNameForSelect() {
-        return "ime,prezime,email,brojTelefona,idKategorijaOsobe";
+        return "idPerson,firstName,lastName,email,phoneNumber,idPersonCategorie";
     }
 
     @Override

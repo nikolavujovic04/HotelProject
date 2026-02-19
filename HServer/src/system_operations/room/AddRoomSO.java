@@ -41,7 +41,6 @@ public class AddRoomSO extends AbstractGenericOperation{
     
     private boolean checkIfExists(Room room) throws Exception{
         List<Room> rooms = repository.getAll(new Room());
-        Robot robot = new Robot();
         for (Room check : rooms) {
             if(check!=null){
                 if(check.getTipSobe().equals(room.getTipSobe())){
