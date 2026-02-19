@@ -13,39 +13,51 @@ import system_operations.AbstractGenericOperation;
  *
  * @author Nikola
  */
-public class DeletePersonSO extends AbstractGenericOperation{
-
+public class DeletePersonSO extends AbstractGenericOperation{ 
+    
     @Override
     protected void precondition(Object param) throws Exception {
-        if(param==null || !(param instanceof Person)){
+        if (param == null || !(param instanceof Person)) {
             throw new Exception("Invalid param");
-        }else{
+        } else {
             Person person = (Person) param;
-            checkValueConstraints(person);
+            checkConstraints(person);
         }
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.delete((Person)param);
+        repository.delete((Person) param);
     }
-    
-    private void checkValueConstraints(Person person) throws Exception{
-        boolean exists = checkReservation(person);
-        if(exists){
-            throw new Exception("Member with that ID has created reservation and can not be deleted. Try again.");
+
+    private void checkConstraints(Person person) throws Exception {
+        boolean exist = checkExistent(person);
+        boolean hasReservation = checkReservation(person);
+
+        if (!exist) {
+            throw new Exception("Person does not exist.");
+        }
+
+        if (hasReservation) {
+            throw new Exception("Person has reservations and cannot be deleted.");
         }
     }
-    
-    private boolean checkReservation(Person person) throws Exception{
+
+    private boolean checkExistent(Person person) throws Exception {
+        Person exist = (Person) repository.getById(person);
+        return exist != null;
+    }
+
+    private boolean checkReservation(Person person) throws Exception {
         List<Reservation> reservations = repository.getAll(new Reservation());
-        
+
         for (Reservation reservation : reservations) {
-            if(reservation.getPerson().getId() == person.getId()){
+            if (reservation.getPerson() != null &&
+                reservation.getPerson().getId() == person.getId()) {
                 return true;
             }
         }
-        
+
         return false;
     }
 }
