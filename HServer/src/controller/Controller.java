@@ -8,7 +8,6 @@ import domain.Person;
 import domain.Recepcionist;
 import java.util.List;
 import repository.Repository;
-import repository.db.DatabaseBroker;
 import repository.db.impl.RepositoryDbGeneric;
 import repository.db.impl.RepositoryDbRecepcionist;
 import system_operations.AbstractGenericOperation;

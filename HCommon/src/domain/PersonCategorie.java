@@ -14,16 +14,16 @@ import java.sql.SQLException;
  */
 public class PersonCategorie{
     private long id;
-    private String tipOsobe;
-    private double popust;
+    private String personType;
+    private double discount;
 
     public PersonCategorie() {
     }
 
-    public PersonCategorie(long id, String tipOsobe, double popust) {
+    public PersonCategorie(long id, String personType, double discount) {
         this.id = id;
-        this.tipOsobe = tipOsobe;
-        this.popust = popust;
+        this.personType = personType;
+        this.discount = discount;
     }
 
     public long getId() {
@@ -34,24 +34,21 @@ public class PersonCategorie{
         this.id = id;
     }
 
-    public String getTipOsobe() {
-        return tipOsobe;
+    public String getPersonType() {
+        return personType;
     }
 
-    public void setTipOsobe(String tipOsobe) {
-        this.tipOsobe = tipOsobe;
+    public void setPersonType(String personType) {
+        this.personType = personType;
     }
 
-    public double getPopust() {
-        return popust;
+    public double getDiscount() {
+        return discount;
     }
 
-    public void setPopust(double popust) {
-        this.popust = popust;
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
-
-    @Override
-    public String toString() {
-        return this.tipOsobe;
-    }
+    
+    
 }

@@ -9,6 +9,9 @@ package constant;
  * @author Nikola
  */
 public interface ServerConstants {
+    public static final String DB_CONFIG_FILE_PATH = "config/dbconfig.properties";
     public static final String DB_CONFIG_URL="url";
     public static final String DB_CONFIG_USERNAME="username";
+    public static final String SERVER_CONFIG_FILE_PATH = "config/serverconfig.properties";
+    public static final String SERVER_CONFIG_PORT = "port";
 }
