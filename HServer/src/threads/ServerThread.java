@@ -48,8 +48,26 @@ public class ServerThread extends Thread{
         }
     }
     
-    public void stopServer(){
+    public void stopServer() throws IOException{
         for (ClientRequests client : clients) {
+            client.stopThread();
+        }
+        try{
+            sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        serverSocket.close();
+    }
+    
+    public void closeActiveRecepcionists(){
+        for(ClientRequests client : clients){
+            try {
+                client.getSocket().close();
+                clients.remove(client);
+            } catch (IOException ex) {
+                Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     

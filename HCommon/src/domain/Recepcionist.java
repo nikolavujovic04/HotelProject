@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  * @author Nikola
  */
-public class Recepcionist{
+public class Recepcionist implements GenericEntity{
     private long idRecepcionist;
     private String firstName;
     private String lastName;
@@ -98,6 +98,65 @@ public class Recepcionist{
 
     public void setLogged(boolean logged) {
         this.logged = logged;
+    }
+
+    @Override
+    public String getTableName() {
+        return "recepcionist";
+    }
+
+    @Override
+    public String getColumnNameForSelect() {
+        return "idRecepcionist,firstName,lastName,jmbg,username,password,phoneNumber,logged";
+    }
+
+    @Override
+    public String getColumnNameForInsert() {
+        return "idRecepcionist,firstName,lastName,jmbg,username,password,phoneNumber,logged";
+    }
+
+    @Override
+    public String getInsertValues() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(idRecepcionist).append(",")
+                .append("'").append(firstName).append("'").append(",")
+                .append("'").append(lastName).append("'").append(",")
+                .append("'").append(jmbg).append("'").append(",")
+                .append("'").append(username).append("'").append(",")
+                .append("'").append(password).append("'").append(",")
+                .append("'").append(phoneNumber).append("'").append(",")
+                .append(logged);
+        return sb.toString();
+    }
+
+    @Override
+    public String getIdName() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Long getIdValue() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setId(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public GenericEntity getEntityFromResultSet(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean checkValues() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean equalsWithoutID(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

@@ -6,7 +6,6 @@ package domain;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
-
 /**
  *
  * @author Nikola
@@ -16,7 +15,7 @@ public class Reservation implements GenericEntity{
     private LocalDate dateFrom;
     private LocalDate dateTo;
     private int dayNumber;
-    private double discountPrise;
+    private double discountPrice;
     private String reservationType;
     private Recepcionist recepcionist;
     private Person person;
@@ -24,12 +23,12 @@ public class Reservation implements GenericEntity{
     public Reservation() {
     }
 
-    public Reservation(long id, LocalDate dateFrom, LocalDate dateTo, int dayNumber, double discountPrise, String reservationType, Recepcionist recepcionist, Person person) {
+    public Reservation(long id, LocalDate dateFrom, LocalDate dateTo, int dayNumber, double discountPrice, String reservationType, Recepcionist recepcionist, Person person) {
         this.id = id;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.dayNumber = dayNumber;
-        this.discountPrise = discountPrise;
+        this.discountPrice = discountPrice;
         this.reservationType = reservationType;
         this.recepcionist = recepcionist;
         this.person = person;
@@ -68,11 +67,11 @@ public class Reservation implements GenericEntity{
     }
 
     public double getDiscountPrise() {
-        return discountPrise;
+        return discountPrice;
     }
 
     public void setDiscountPrise(double discountPrise) {
-        this.discountPrise = discountPrise;
+        this.discountPrice = discountPrise;
     }
 
     public String getReservationType() {
@@ -101,17 +100,17 @@ public class Reservation implements GenericEntity{
 
     @Override
     public String getTableName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "reservation";
     }
 
     @Override
     public String getColumnNameForSelect() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "idReservation,dateFrom,dateTo,dayNumber,totalCost,discountPrice,type,idRecepcionist,idPerson";
     }
 
     @Override
     public String getColumnNameForInsert() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "dateFrom,dateTo,dayNumber,totalCost,discountPrice,type,idRecepcionist,idPerson";
     }
 
     @Override
