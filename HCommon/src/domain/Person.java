@@ -142,27 +142,6 @@ public class Person implements GenericEntity{
     }
 
     @Override
-    public boolean checkValues() throws Exception {
-        if(this.firstName.isEmpty()){
-            throw new Exception("Person name is empty!");
-        }
-        
-        if(this.lastName.isEmpty()){
-            throw new Exception("Person lastname is empty!");
-        }
-        
-        if(this.email.isEmpty()){
-            throw new Exception("Person email is empty!");
-        }
-        
-        if(this.phoneNumber.isEmpty()){
-            throw new Exception("Person phone number is empty!");
-        }
-        
-        return true;
-    }
-
-    @Override
     public boolean equalsWithoutID(Object object) {
         if(this == object){
             return true;
