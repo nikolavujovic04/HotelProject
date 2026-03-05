@@ -37,7 +37,7 @@ public class DbConnectionFactory {
                 
                 String url = properties.getProperty(ServerConstants.DB_CONFIG_URL);
                 String user = properties.getProperty(ServerConstants.DB_CONFIG_USERNAME);
-                String password = properties.getProperty("password");
+                String password = properties.getProperty(ServerConstants.DB_CONFIG_PASSWORD);
                 
                 connection = DriverManager.getConnection(url, user, password);
                 connection.setAutoCommit(false);

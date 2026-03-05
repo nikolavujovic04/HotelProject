@@ -34,19 +34,8 @@ public class ClientRequests extends Thread{
         while (!socket.isClosed()) {   
             
             try {
-                Request request = (Request) receiver.receive();
+                Request request = (Request) new Receiver(socket).receive();
                 Response response = new Response();
-                
-                switch (request.getOperation()) {
-                    case LOGIN:
-                        recepcionist = (Recepcionist)request.getArgument();
-                        recepcionist = Controller.getInstance().login(recepcionist);
-                        response.setResult(recepcionist);
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
-                
                 sender.send(response);
             } catch (Exception ex) {
                 Logger.getLogger(ClientRequests.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,6 +46,34 @@ public class ClientRequests extends Thread{
     
     public Socket getSocket(){
         return socket;
+    }
+    
+    private Response handleRequest(Request request) throws Exception{
+        switch (request.getOperation()) {
+            case LOGIN:
+                return login(request);
+                default:
+                throw new AssertionError();
+            }
+    }
+    
+    private Response login(Request request) throws Exception{
+        Response response = new Response();
+        recepcionist = (Recepcionist)request.getArgument();
+        try{
+            recepcionist = Controller.getInstance().login(recepcionist);
+            System.out.println("Uspesna prijava na sistem...");
+            response.setResult(recepcionist);
+            this.recepcionist = recepcionist;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            response.setException(ex);
+            
+        }
+        
+                
+        response.setResult(recepcionist);
+        return response;
     }
     
     

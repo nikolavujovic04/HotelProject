@@ -4,17 +4,25 @@
  */
 package form;
 
+import domain.Recepcionist;
+
 /**
  *
  * @author Nikola
  */
 public class FormHotel extends javax.swing.JFrame {
 
+    Recepcionist recepcionist;
     /**
      * Creates new form FormHotel
      */
-    public FormHotel() {
+    public FormHotel(Recepcionist recepcionist) {
         initComponents();
+        this.recepcionist = recepcionist;
+    }
+
+    private FormHotel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
