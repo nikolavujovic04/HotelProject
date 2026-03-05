@@ -38,9 +38,10 @@ public class Controller {
         return instance;
     }
     
-    public void login(Recepcionist recepcionist) throws Exception{
+    public Recepcionist login(Recepcionist recepcionist) throws Exception{
         AbstractGenericOperation operation = new LoginSo();
         operation.execute(recepcionist);
+        return ((LoginSo)operation).returnLogged();
     }
     
     public void logout(Recepcionist recepcionist) throws Exception{

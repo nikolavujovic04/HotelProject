@@ -8,5 +8,6 @@ package communication;
  *
  * @author Nikola
  */
-public class Operation {
+public enum Operation {
+    LOGIN, LOG_OUT
 }

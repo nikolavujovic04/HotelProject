@@ -57,4 +57,8 @@ public class LoginSo extends AbstractGenericOperation{
         }
     }
     
+    public Recepcionist returnLogged(){
+        return currentRecepcionist;
+    }
+    
 }
