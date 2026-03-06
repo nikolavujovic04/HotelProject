@@ -11,9 +11,11 @@ import communication.Response;
 import communication.ResponseType;
 import communication.Sender;
 import controller.Controller;
+import domain.PersonCategorie;
 import domain.Recepcionist;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,6 +55,8 @@ public class ClientRequests extends Thread{
         switch (request.getOperation()) {
             case LOGIN:
                 return login(request);
+            case GET_ALL_CATEGORIES:
+                return getAllCategories(request);
             }
         
         return null;
@@ -78,6 +82,17 @@ public class ClientRequests extends Thread{
     
     private Response getAllCategories(Request request){
         Response response = new Response();
+        try {      
+            List<PersonCategorie> requestCategories = Controller.getInstance().getAllCategories();
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResult(requestCategories);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        
+        return response;
     }
     
     

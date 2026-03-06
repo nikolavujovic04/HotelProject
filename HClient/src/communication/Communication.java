@@ -41,4 +41,10 @@ public class Communication {
         return (Response)new Receiver(socket).receive();
     }
     
+    public Response addPerson(Request request) throws Exception{
+        new Sender(socket).send(request);
+        System.out.println("Zahtev za kreiranje osobe je poslat");
+        return (Response)new Receiver(socket).receive();
+    }
+    
 }

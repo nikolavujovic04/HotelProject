@@ -7,6 +7,8 @@ package domain;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -52,7 +54,7 @@ public class PersonCategorie implements GenericEntity{
 
     @Override
     public String getTableName() {
-        return "person_categorie";
+        return "personcategorie";
     }
 
     @Override
@@ -92,13 +94,25 @@ public class PersonCategorie implements GenericEntity{
 
     @Override
     public GenericEntity getEntityFromResultSet(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return new PersonCategorie(rs.getLong("idCategorie"), rs.getString("type"), rs.getDouble("discount"));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public boolean equalsWithoutID(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public String toString() {
+        return this.personType;
+    }
+    
+    
     
     
 }

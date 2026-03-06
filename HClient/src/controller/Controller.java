@@ -9,6 +9,7 @@ import communication.Operation;
 import communication.Request;
 import communication.Response;
 import communication.ResponseType;
+import domain.Person;
 import domain.PersonCategorie;
 import domain.Recepcionist;
 import java.io.IOException;
@@ -59,6 +60,10 @@ public class Controller {
         }else{
             throw response.getException();
         }
+    }
+    
+    public void addPerson(Person person){
+        Request request = new Request(Operation.ADD_PERSON, person);
     }
         
     public void setCurrentUser(Recepcionist user){

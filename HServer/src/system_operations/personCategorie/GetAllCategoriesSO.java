@@ -4,6 +4,8 @@
  */
 package system_operations.personCategorie;
 
+import domain.PersonCategorie;
+import java.util.List;
 import system_operations.AbstractGenericOperation;
 
 /**
@@ -12,13 +14,17 @@ import system_operations.AbstractGenericOperation;
  */
 public class GetAllCategoriesSO extends AbstractGenericOperation{
 
+    private List<PersonCategorie> categories;
     @Override
     protected void precondition(Object param) throws Exception {
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        
+        categories = repository.getAll(new PersonCategorie());
     }
     
+    public List<PersonCategorie> getCategories(){
+        return categories;
+    }
 }

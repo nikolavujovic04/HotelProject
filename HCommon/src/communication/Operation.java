@@ -9,5 +9,8 @@ package communication;
  * @author Nikola
  */
 public enum Operation {
-    LOGIN, LOG_OUT, GET_ALL_CATEGORIES
+    LOGIN, 
+    LOG_OUT,
+    GET_ALL_CATEGORIES,
+    ADD_PERSON
 }

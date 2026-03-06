@@ -5,13 +5,16 @@
 package controller;
 
 import domain.Person;
+import domain.PersonCategorie;
 import domain.Recepcionist;
+import java.util.List;
 import repository.Repository;
 import repository.db.impl.RepositoryDbRecepcionist;
 import system_operations.AbstractGenericOperation;
 import system_operations.person.AddPersonSO;
 import system_operations.person.DeletePersonSO;
 import system_operations.person.EditPersonSO;
+import system_operations.personCategorie.GetAllCategoriesSO;
 import system_operations.recepcionist.LoginSo;
 import system_operations.recepcionist.LogutSo;
 
@@ -47,8 +50,10 @@ public class Controller {
         operation.execute(recepcionist);
     }
     
-    public void getAllCategories(){
-        AbstractGenericOperation operation = new GetAllCategoriesSO
+    public List<PersonCategorie> getAllCategories() throws Exception{
+        AbstractGenericOperation operation = new GetAllCategoriesSO();
+        operation.execute(new PersonCategorie());
+        return ((GetAllCategoriesSO)operation).getCategories();
     }
     
     public void addPerson(Person person) throws Exception{      
