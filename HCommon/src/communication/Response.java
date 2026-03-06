@@ -11,15 +11,25 @@ import java.io.Serializable;
  * @author Nikola
  */
 public class Response implements Serializable{
+    private ResponseType responseType;
     private Object result;
     private Exception exception;
 
     public Response() {
     }
 
-    public Response(Object result, Exception exception) {
+    public Response(ResponseType responseType, Object result, Exception exception) {
+        this.responseType = responseType;
         this.result = result;
         this.exception = exception;
+    }
+
+    public ResponseType getResponseType() {
+        return responseType;
+    }
+
+    public void setResponseType(ResponseType responseType) {
+        this.responseType = responseType;
     }
 
     public Object getResult() {
@@ -42,4 +52,6 @@ public class Response implements Serializable{
     public String toString() {
         return "Response{" + "result=" + result + ", exception=" + exception + '}';
     }
+
+    
 }

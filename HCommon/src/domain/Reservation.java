@@ -137,12 +137,7 @@ public class Reservation implements GenericEntity{
     public GenericEntity getEntityFromResultSet(ResultSet rs) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    @Override
-    public boolean checkValues() throws Exception {
-        return false;
-    }
-
+    
     @Override
     public boolean equalsWithoutID(Object object) {
         return false;

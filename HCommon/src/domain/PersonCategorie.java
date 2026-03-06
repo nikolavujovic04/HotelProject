@@ -96,19 +96,6 @@ public class PersonCategorie implements GenericEntity{
     }
 
     @Override
-    public boolean checkValues() throws Exception {
-        if(this.personType.isEmpty()){
-            throw new Exception("Categorie type is empty!");
-        }
-        
-        if(this.discount==0){
-            throw new Exception("Discount is empty!");
-        }
-        
-        return true;
-    }
-
-    @Override
     public boolean equalsWithoutID(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

@@ -8,6 +8,7 @@
             <file>file:/C:/ProjektovanjeSoftveraVezbe/Project/HServer/src/threads/ClientRequests.java</file>
             <file>file:/C:/ProjektovanjeSoftveraVezbe/Project/HServer/src/constant/ServerConstants.java</file>
             <file>file:/C:/ProjektovanjeSoftveraVezbe/Project/HServer/src/repository/db/DbConnectionFactory.java</file>
+            <file>file:/C:/ProjektovanjeSoftveraVezbe/Project/HServer/src/system_operations/person/DeletePersonSO.java</file>
         </group>
     </open-files>
 </project-private>
