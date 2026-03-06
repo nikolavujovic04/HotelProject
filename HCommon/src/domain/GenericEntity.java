@@ -6,14 +6,8 @@ package domain;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
-import java.sql.*;
-import java.util.List;
 
-/**
- *
- * @author Nikola
- */
-public interface GenericEntity extends Serializable{
+public interface GenericEntity extends Serializable {
     String getTableName();
     String getColumnNameForSelect();
     String getColumnNameForInsert();

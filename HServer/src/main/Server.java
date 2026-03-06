@@ -4,17 +4,17 @@
  */
 package main;
 
-import threads.ServerThread;
-
+import form.FormServer;
 /**
  *
  * @author Nikola
  */
-public class Main {
+public class Server {
     
     public static void main(String[] args) {
-        ServerThread server=new ServerThread();
-        server.startServer();
+        System.out.println("Program started");
+        FormServer server = new FormServer();
+        server.setVisible(true);
     }
     
 }

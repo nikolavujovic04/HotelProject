@@ -4,9 +4,11 @@
  */
 package threads;
 
+import communication.Operation;
 import communication.Receiver;
 import communication.Request;
 import communication.Response;
+import communication.ResponseType;
 import communication.Sender;
 import controller.Controller;
 import domain.Recepcionist;
@@ -20,13 +22,11 @@ import java.util.logging.Logger;
  * @author Nikola
  */
 public class ClientRequests extends Thread{
-    Socket socket;
-    Sender sender;
-    Receiver receiver;
-    ServerThread server;
-    Recepcionist recepcionist;
+    private Socket socket;
+    private Recepcionist recepcionist;
 
-    public ClientRequests(ServerThread server, Socket socket) {
+    public ClientRequests(Socket socket) {
+        this.socket = socket;
     }
 
     @Override
@@ -35,8 +35,9 @@ public class ClientRequests extends Thread{
             
             try {
                 Request request = (Request) new Receiver(socket).receive();
-                Response response = new Response();
-                sender.send(response);
+                System.out.println("STIGAO ZAHTEV: " + request.getOperation());
+                Response response = handleRequest(request);
+                new Sender(socket).send(response);
             } catch (Exception ex) {
                 Logger.getLogger(ClientRequests.class.getName()).log(Level.SEVERE, null, ex);
             }         
@@ -52,28 +53,31 @@ public class ClientRequests extends Thread{
         switch (request.getOperation()) {
             case LOGIN:
                 return login(request);
-                default:
-                throw new AssertionError();
             }
+        
+        return null;
     }
     
     private Response login(Request request) throws Exception{
         Response response = new Response();
-        recepcionist = (Recepcionist)request.getArgument();
+        Recepcionist requestRecepcionist = (Recepcionist)request.getArgument();
         try{
-            recepcionist = Controller.getInstance().login(recepcionist);
+            Recepcionist login = Controller.getInstance().login(requestRecepcionist);
             System.out.println("Uspesna prijava na sistem...");
-            response.setResult(recepcionist);
-            this.recepcionist = recepcionist;
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResult(login);
+            this.recepcionist = login;
         }catch(Exception ex){
             ex.printStackTrace();
-            response.setException(ex);
-            
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);    
         }
         
-                
-        response.setResult(recepcionist);
         return response;
+    }
+    
+    private Response getAllCategories(Request request){
+        Response response = new Response();
     }
     
     

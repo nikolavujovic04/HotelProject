@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author Nikola
  */
 public class Recepcionist implements GenericEntity{
-    private long idRecepcionist;
+    private Long idRecepcionist;
     private String firstName;
     private String lastName;
     private String jmbg;
@@ -25,7 +25,7 @@ public class Recepcionist implements GenericEntity{
     public Recepcionist() {
     }
 
-    public Recepcionist(long idRecepcionar, String firstName, String lastName, String jmbg, String username, String password, String phoneNumber, boolean logged) {
+    public Recepcionist(Long idRecepcionar, String firstName, String lastName, String jmbg, String username, String password, String phoneNumber, boolean logged) {
         this.idRecepcionist = idRecepcionar;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,7 +40,7 @@ public class Recepcionist implements GenericEntity{
         return idRecepcionist;
     }
 
-    public void setidRecepcionist(long idRecepcionist) {
+    public void setidRecepcionist(Long idRecepcionist) {
         this.idRecepcionist = idRecepcionist;
     }
 
@@ -146,7 +146,13 @@ public class Recepcionist implements GenericEntity{
 
     @Override
     public GenericEntity getEntityFromResultSet(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return new Recepcionist(rs.getLong("idRecepcionist"),rs.getString("firstName"), rs.getString("lastName"),rs.getString("jmbg"), rs.getString("username"), rs.getString("password"),rs.getString("phoneNumber"),rs.getBoolean("logged"));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return null;
     }
 
     @Override

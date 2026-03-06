@@ -7,7 +7,6 @@ package system_operations.person;
 import domain.Person;
 import java.util.List;
 import system_operations.AbstractGenericOperation;
-import validation.Validator;
 
 /**
  *
@@ -21,13 +20,13 @@ public class AddPersonSO extends AbstractGenericOperation{
         }
         
         Person person = (Person) param;
-            Validator.startValidation()
+            /*Validator.startValidation()
             .validateNotNullOrEmpty(person.getFirstName(), "Ime je obavezno")
             .validateNotNullOrEmpty(person.getLastName(), "Prezime je obavezno")     
             .validateNotNullOrEmpty(person.getEmail(), "Email je obavezan")
             .validateNotNullOrEmpty(person.getPhoneNumber(), "Broj telefona je obavezan")
             .validateNotNull(person.getCategorie(), "Kategorija osobe je obavezna")
-            .throwIfInvalide();
+            .throwIfInvalide();*/
         
         checkValueConstraints(person);
     }

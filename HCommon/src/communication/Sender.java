@@ -4,6 +4,7 @@
  */
 package communication;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -13,7 +14,7 @@ import java.net.Socket;
  * @author Nikola
  */
 public class Sender {
-    private final Socket socket;
+    private Socket socket;
 
     public Sender(Socket socket) {
         this.socket = socket;
@@ -21,7 +22,7 @@ public class Sender {
 
     public void send(Object obj) throws Exception {
         try {
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             out.writeObject(obj);
             out.flush();
         } catch (IOException ex) {

@@ -35,16 +35,28 @@ public class ServerThread extends Thread{
     public void run() {
         try{
             while(!serverSocket.isClosed()){
-                System.out.println("Waiting for clients");
+                System.out.println("Cekam klijenta...");
                 Socket socket = serverSocket.accept();
-                System.out.println("Client connected");
+                System.out.println("Klijent povezan");
                 
-                ClientRequests clientRequest = new ClientRequests(this, socket);
-                clients.add(clientRequest);
+                ClientRequests clientRequest = new ClientRequests(socket);
                 clientRequest.start();
+                clients.add(clientRequest);
             }
         } catch (IOException ex) {
-            Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+        stopAllThreads();
+    }
+    
+    private void stopAllThreads(){
+        for(ClientRequests client : clients){
+            try {
+                client.getSocket().close();
+                clients.remove(client);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
     
@@ -60,15 +72,8 @@ public class ServerThread extends Thread{
         serverSocket.close();
     }
     
-    public void closeActiveRecepcionists(){
-        for(ClientRequests client : clients){
-            try {
-                client.getSocket().close();
-                clients.remove(client);
-            } catch (IOException ex) {
-                Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    public ServerSocket getServerSocket(){
+        return serverSocket;
     }
     
 }

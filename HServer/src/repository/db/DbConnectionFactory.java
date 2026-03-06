@@ -42,7 +42,8 @@ public class DbConnectionFactory {
                 connection = DriverManager.getConnection(url, user, password);
                 connection.setAutoCommit(false);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(DbConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("DEBUG: dbconfig.properties fajl nije pronađen!");
+                ex.printStackTrace();
             }
         }
         return connection;

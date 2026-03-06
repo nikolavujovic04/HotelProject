@@ -17,6 +17,9 @@ import repository.db.DbConnectionFactory;
  */
 public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEntity, Long>{
 
+    public RepositoryDbGeneric() {
+    }
+    
     @Override
     public List<GenericEntity> getAll(GenericEntity entity) throws Exception {
         Connection connection = DbConnectionFactory.getInstance().getConnection();

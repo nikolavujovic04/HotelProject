@@ -13,13 +13,13 @@ import java.net.Socket;
  * @author Nikola
  */
 public class Receiver {
-    private final Socket socket;
+    private Socket socket;
 
     public Receiver(Socket socket) {
         this.socket = socket;
     }
 
-    public Object  receive() throws Exception {
+    public Object receive() throws Exception {
         try {
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             return in.readObject();

@@ -6,9 +6,7 @@ package controller;
 
 import domain.Person;
 import domain.Recepcionist;
-import java.util.List;
 import repository.Repository;
-import repository.db.impl.RepositoryDbGeneric;
 import repository.db.impl.RepositoryDbRecepcionist;
 import system_operations.AbstractGenericOperation;
 import system_operations.person.AddPersonSO;
@@ -47,6 +45,10 @@ public class Controller {
     public void logout(Recepcionist recepcionist) throws Exception{
         AbstractGenericOperation operation = new LogutSo();
         operation.execute(recepcionist);
+    }
+    
+    public void getAllCategories(){
+        AbstractGenericOperation operation = new GetAllCategoriesSO
     }
     
     public void addPerson(Person person) throws Exception{      

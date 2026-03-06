@@ -8,8 +8,11 @@ import communication.Communication;
 import communication.Operation;
 import communication.Request;
 import communication.Response;
+import communication.ResponseType;
+import domain.PersonCategorie;
 import domain.Recepcionist;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -38,5 +41,27 @@ public class Controller {
         Request request = new Request(Operation.LOGIN,recepcionist);
         Response response = Communication.getInstance().login(request);
         
+        if(response.getResponseType().equals(ResponseType.SUCCESS)){
+            Recepcionist re = (Recepcionist) response.getResult();
+            return re;
+        }else{
+            throw response.getException();
+        }
+    }
+    
+    public List<PersonCategorie> getAllCategories() throws Exception{
+        Request request = new Request(Operation.GET_ALL_CATEGORIES,null);
+        Response response = Communication.getInstance().getAllCategories(request);
+        
+        if(response.getResponseType().equals(ResponseType.SUCCESS)){
+            List<PersonCategorie> categories = (List<PersonCategorie>) response.getResult();
+            return categories;
+        }else{
+            throw response.getException();
+        }
+    }
+        
+    public void setCurrentUser(Recepcionist user){
+        this.currentRecepcionist = user;
     }
 }

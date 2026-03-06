@@ -4,11 +4,11 @@
  */
 package system_operations.recepcionist;
 
+import db.DbRepository;
 import domain.Recepcionist;
 import java.util.List;
 import repository.db.impl.RepositoryDbRecepcionist;
 import system_operations.AbstractGenericOperation;
-
 /**
  *
  * @author Nikola
@@ -16,19 +16,15 @@ import system_operations.AbstractGenericOperation;
 public class LoginSo extends AbstractGenericOperation{
 
     Recepcionist currentRecepcionist;
-    RepositoryDbRecepcionist repositoryRecepcionist;
-
+    private final RepositoryDbRecepcionist repositoryRecepcionist;
     public LoginSo() {
         repositoryRecepcionist = new RepositoryDbRecepcionist();
     }
     
     @Override
     protected void precondition(Object param) throws Exception {
-        if(param!=null && param instanceof Recepcionist){
-            throw new Exception("Inalid param");
-        }
-        if(((Recepcionist)param).getUsername().equals(null) || ((Recepcionist)param).getPassword().equals(null)){
-            throw new Exception("No credentials sent!");
+        if (param == null || !(param instanceof Recepcionist)) {
+            throw new Exception("Invalid parameter type!");
         }
     }   
 
