@@ -11,6 +11,7 @@ import communication.Response;
 import communication.ResponseType;
 import communication.Sender;
 import controller.Controller;
+import domain.Person;
 import domain.PersonCategorie;
 import domain.Recepcionist;
 import java.io.IOException;
@@ -57,6 +58,8 @@ public class ClientRequests extends Thread{
                 return login(request);
             case GET_ALL_CATEGORIES:
                 return getAllCategories(request);
+            case ADD_PERSON:
+                return addPerson(request);
             }
         
         return null;
@@ -91,6 +94,22 @@ public class ClientRequests extends Thread{
             response.setResponseType(ResponseType.ERROR);
             response.setException(ex);
         }
+        
+        return response;
+    }
+    
+    private Response addPerson(Request request) throws Exception{
+        Response response = new Response();
+        try{
+            Person person = (Person)request.getArgument();
+            Controller.getInstance().addPerson(person);
+            response.setResponseType(ResponseType.SUCCESS);
+        }catch(Exception ex){
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        
         
         return response;
     }

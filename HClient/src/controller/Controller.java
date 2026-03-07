@@ -62,8 +62,13 @@ public class Controller {
         }
     }
     
-    public void addPerson(Person person){
+    public void addPerson(Person person) throws IOException, Exception{
         Request request = new Request(Operation.ADD_PERSON, person);
+        Response response = Communication.getInstance().addPerson(request);
+        
+        if(response.getResponseType().equals(ResponseType.ERROR)){
+            throw response.getException();
+        }
     }
         
     public void setCurrentUser(Recepcionist user){

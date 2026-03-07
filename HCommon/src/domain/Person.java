@@ -37,6 +37,14 @@ public class Person implements GenericEntity{
         this.categorie = categorie;
     }
     
+    public Person(String firstName, String lastName, String email, String phoneNumber, PersonCategorie categorie){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.categorie = categorie;
+    }
+    
     public long getId() {
         return id;
     }
@@ -87,19 +95,18 @@ public class Person implements GenericEntity{
 
     @Override
     public String getTableName() {
-        return "osoba";
+        return "person";
     }
 
     @Override
     public String getColumnNameForInsert() {
-        return "imePrezime,email,brojTelefona,idKategorije";
+        return "firstName,lastName,email,phoneNumber,idCategorie";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        sb.append(id).append(",")
-                .append("'").append(firstName).append("'").append(",")
+        sb.append("'").append(firstName).append("'").append(",")
                 .append("'").append(lastName).append("'").append(",")
                 .append("'").append(email).append("'").append(",")
                 .append("'").append(phoneNumber).append("'").append(",")
@@ -110,7 +117,7 @@ public class Person implements GenericEntity{
 
     @Override
     public void setId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.id = id;
     }
 
     @Override
@@ -132,8 +139,8 @@ public class Person implements GenericEntity{
     public GenericEntity getEntityFromResultSet(ResultSet rs) {
         try {
             PersonCategorie categorie = new PersonCategorie();
-            categorie.setId(rs.getLong("idKategorijaOsobe"));
-            return new Person(rs.getLong("idOsoba"),rs.getString("ime"), rs.getString("prezime"),rs.getString("email"), rs.getString("brojTelefona"), categorie);
+            categorie.setId(rs.getLong("idCategorie"));
+            return new Person(rs.getLong("idPerson"),rs.getString("firstName"), rs.getString("lastName"),rs.getString("email"), rs.getString("phoneNumber"), categorie);
         } catch (SQLException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         }

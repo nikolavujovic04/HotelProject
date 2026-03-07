@@ -5,9 +5,13 @@
 package form;
 
 import controller.Controller;
+import domain.Person;
 import domain.PersonCategorie;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,7 +35,7 @@ public class FormAddPerson extends javax.swing.JDialog {
             model.addElement(pc);
         }
 
-        jComboBox1.setModel(model);
+        jComboCategorie.setModel(model);
     }
 
     /**
@@ -53,7 +57,11 @@ public class FormAddPerson extends javax.swing.JDialog {
         jPhoneNumber = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboCategorie = new javax.swing.JComboBox<>();
+        lblLastNameError = new javax.swing.JLabel();
+        lblPhoneNumberError = new javax.swing.JLabel();
+        lblEmailError = new javax.swing.JLabel();
+        lblfirstNameError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,18 +92,22 @@ public class FormAddPerson extends javax.swing.JDialog {
                     .addComponent(jButton1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(lblPhoneNumberError, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(jFirstName)
                             .addComponent(jLastName)
                             .addComponent(jEmail)
                             .addComponent(jPhoneNumber)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jComboCategorie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLastNameError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEmailError, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(lblfirstNameError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,23 +117,31 @@ public class FormAddPerson extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblfirstNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLastNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addComponent(lblEmailError, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
+                .addComponent(lblPhoneNumberError, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(jComboCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(33, 33, 33))
         );
@@ -130,13 +150,28 @@ public class FormAddPerson extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        validateForm();
+        try {
+            String firstName = jFirstName.getText().trim();
+            String lastName = jLastName.getText().trim();
+            String email = jEmail.getText().trim();
+            String phoneNumber = jPhoneNumber.getText().trim();
+            PersonCategorie categorie = (PersonCategorie) jComboCategorie.getSelectedItem();
+            validateForm(firstName, lastName, email, phoneNumber, categorie);
+            
+            Person person = new Person(firstName, lastName, email, phoneNumber, categorie);
+            Controller.getInstance().addPerson(person);
+            JOptionPane.showMessageDialog(this, "Uspesno dodata osoba u sistem", "Obavestnje", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Neuspesno izvrsavanje ubacivanja osobe u sistem", "GRESKA", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<PersonCategorie> jComboBox1;
+    private javax.swing.JComboBox<PersonCategorie> jComboCategorie;
     private javax.swing.JTextField jEmail;
     private javax.swing.JTextField jFirstName;
     private javax.swing.JLabel jLabel1;
@@ -146,21 +181,41 @@ public class FormAddPerson extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jLastName;
     private javax.swing.JTextField jPhoneNumber;
+    private javax.swing.JLabel lblEmailError;
+    private javax.swing.JLabel lblLastNameError;
+    private javax.swing.JLabel lblPhoneNumberError;
+    private javax.swing.JLabel lblfirstNameError;
     // End of variables declaration//GEN-END:variables
 
-    private void validateForm(){
-        /*try {
-            String firstName = jUsernameField.getText().trim();
-            String password = jPasswordField.getText().trim();
-            validateForm(username, password);
-            Recepcionist user = Controller.getInstance().login(username, password);
-            JOptionPane.showMessageDialog(this, "Dobrodosao "+user.getFirstName());
-            this.dispose();
-            Controller.getInstance().setCurrentUser(user);
-            new FormHotel(user).setVisible(true);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Neuspoesno logovanje na sistem", "GRESKA!", JOptionPane.ERROR_MESSAGE);
-        }*/
+    private void validateForm(String firstName, String lastName, String email, String phoneNumber, PersonCategorie categorije) throws Exception{
+        String errorMessage = "";
+        lblfirstNameError.setText("");
+        lblLastNameError.setText("");
+        lblEmailError.setText("");
+        lblPhoneNumberError.setText("");
+        
+        if(firstName.isEmpty()){
+            errorMessage += "Ime ne sme biti prazno!";
+            lblfirstNameError.setText(errorMessage);
+        }
+        
+        if(lastName.isEmpty()){
+            errorMessage += "Prezime ne sme biti prazno!";
+            lblLastNameError.setText(errorMessage);
+        }
+        
+        if(email.isEmpty()){
+            errorMessage += "Email ne sme biti prazan";
+            lblEmailError.setText(errorMessage);
+        }
+        
+        if(phoneNumber.isEmpty()){
+            errorMessage += "Br. telefona ne sme biti prazan!";
+            lblPhoneNumberError.setText(errorMessage);
+        }
+        
+        if (!errorMessage.isEmpty()) {
+            throw new Exception("Polja moraju biti popunjena");
+        }
     }
 }

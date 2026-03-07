@@ -41,7 +41,7 @@ public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEn
         try{
             Connection connection = DbConnectionFactory.getInstance().getConnection();
             StringBuilder sb = new StringBuilder();
-            sb.append("INESERT INTO ")
+            sb.append("INSERT INTO ")
                     .append(entity.getTableName())
                     .append(" ( ").append(entity.getColumnNameForInsert()).append(")")
                     .append(" VALUES (").append(entity.getInsertValues()).append(")");
