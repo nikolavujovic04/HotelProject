@@ -59,4 +59,21 @@ public class Communication {
         return (Response)new Receiver(socket).receive();
     }
     
+    public Response addRoom(Request request) throws Exception{
+        new Sender(socket).send(request);
+        System.out.println("Zahtev za kreiranje sobe je poslat");
+        return (Response)new Receiver(socket).receive();
+    }
+    
+    public Response getAllRooms(Request request) throws Exception{
+        new Sender(socket).send(request);
+        System.out.println("Zahtev za kategorije je poslat");
+        return (Response)new Receiver(socket).receive();
+    }
+    
+    public Response getAllPersons(Request request) throws Exception{
+        new Sender(socket).send(request);
+        System.out.println("Zahtev za kategorije je poslat");
+        return (Response)new Receiver(socket).receive();
+    }
 }

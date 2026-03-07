@@ -22,6 +22,8 @@ public class FormLogin extends javax.swing.JFrame {
      */
     public FormLogin() {
         initComponents();
+        pack();
+        setLocationRelativeTo(null);
     }
 
     /**

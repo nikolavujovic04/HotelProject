@@ -198,5 +198,10 @@ public class Recepcionist implements GenericEntity{
         return Objects.equals(this.phoneNumber, recepcionist.phoneNumber);
     }
 
+    @Override
+    public String getJoinCondition() {
+        return "";
+    }
+
     
 }

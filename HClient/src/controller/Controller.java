@@ -12,6 +12,7 @@ import communication.ResponseType;
 import domain.Person;
 import domain.PersonCategorie;
 import domain.Recepcionist;
+import domain.Room;
 import java.io.IOException;
 import java.util.List;
 
@@ -88,7 +89,40 @@ public class Controller {
             throw response.getException();
         }
     }
+    
+    public void addRoom(Room room) throws IOException, Exception{
+        Request request = new Request(Operation.ADD_ROOM, room);
+        Response response = Communication.getInstance().addRecepcionist(request);
         
+        if(response.getResponseType().equals(ResponseType.ERROR)){
+            throw response.getException();
+        }
+    }
+    
+    public List<Room> getAllRooms() throws Exception{
+        Request request = new Request(Operation.GET_ALL_ROOMS,null);
+        Response response = Communication.getInstance().getAllRooms(request);
+        
+        if(response.getResponseType().equals(ResponseType.SUCCESS)){
+            List<Room> rooms = (List<Room>) response.getResult();
+            return rooms;
+        }else{
+            throw response.getException();
+        }
+    }
+        
+    public List<Person> getAllPersons() throws Exception{
+        Request request = new Request(Operation.GET_ALL_PERSONS,null);
+        Response response = Communication.getInstance().getAllPersons(request);
+        
+        if(response.getResponseType().equals(ResponseType.SUCCESS)){
+            List<Person> persons = (List<Person>) response.getResult();
+            return persons;
+        }else{
+            throw response.getException();
+        }
+    }
+    
     public void setCurrentUser(Recepcionist user){
         this.currentRecepcionist = user;
     }

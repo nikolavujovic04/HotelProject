@@ -5,6 +5,7 @@
 package system_operations.recepcionist;
 
 import domain.Recepcionist;
+import domain.Room;
 import java.util.List;
 import system_operations.AbstractGenericOperation;
 

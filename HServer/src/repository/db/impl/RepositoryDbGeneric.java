@@ -25,7 +25,10 @@ public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEn
         Connection connection = DbConnectionFactory.getInstance().getConnection();
         List<GenericEntity> entities = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM ").append(entity.getTableName());
+        sb.append("SELECT ").append(entity.getColumnNameForSelect())
+                .append(" FROM ")
+                .append(entity.getTableName())
+                .append(entity.getJoinCondition());
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(sb.toString());
         while(rs.next()){

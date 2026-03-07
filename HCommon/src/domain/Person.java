@@ -132,15 +132,16 @@ public class Person implements GenericEntity{
 
     @Override
     public String getColumnNameForSelect() {
-        return "idPerson,firstName,lastName,email,phoneNumber,idPersonCategorie";
+        return "p.idPerson,p.firstName,p.lastName,p.email,p.phoneNumber,c.idCategorie,c.type";
     }
 
     @Override
     public GenericEntity getEntityFromResultSet(ResultSet rs) {
         try {
             PersonCategorie categorie = new PersonCategorie();
-            categorie.setId(rs.getLong("idCategorie"));
-            return new Person(rs.getLong("idPerson"),rs.getString("firstName"), rs.getString("lastName"),rs.getString("email"), rs.getString("phoneNumber"), categorie);
+            categorie.setId(rs.getLong("c.idCategorie"));
+            categorie.setPersonType(rs.getString("c.type"));
+            return new Person(rs.getLong("p.idPerson"),rs.getString("p.firstName"), rs.getString("p.lastName"),rs.getString("p.email"), rs.getString("p.phoneNumber"), categorie);
         } catch (SQLException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -173,6 +174,11 @@ public class Person implements GenericEntity{
         }
         
         return true;
+    }
+
+    @Override
+    public String getJoinCondition() {
+         return " p JOIN personcategorie c ON p.idCategorie = c.idCategorie";
     }
 
 

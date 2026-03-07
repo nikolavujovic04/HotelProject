@@ -7,6 +7,7 @@ package controller;
 import domain.Person;
 import domain.PersonCategorie;
 import domain.Recepcionist;
+import domain.Room;
 import java.util.List;
 import repository.Repository;
 import repository.db.impl.RepositoryDbRecepcionist;
@@ -14,11 +15,14 @@ import system_operations.AbstractGenericOperation;
 import system_operations.person.AddPersonSO;
 import system_operations.person.DeletePersonSO;
 import system_operations.person.EditPersonSO;
+import system_operations.person.GetAllPersonsSO;
 import system_operations.personCategorie.AddPersonCategorieSO;
 import system_operations.personCategorie.GetAllCategoriesSO;
 import system_operations.recepcionist.AddRecepcionistSO;
 import system_operations.recepcionist.LoginSo;
 import system_operations.recepcionist.LogutSo;
+import system_operations.room.AddRoomSO;
+import system_operations.room.GetAllRoomsSO;
 
 /**
  *
@@ -81,5 +85,22 @@ public class Controller {
     public void addRecepcionist(Recepcionist recepcionist) throws Exception{
         AbstractGenericOperation operation = new AddRecepcionistSO();
         operation.execute(recepcionist);
+    }
+    
+    public void addRoom(Room room) throws Exception{
+        AbstractGenericOperation operation = new AddRoomSO();
+        operation.execute(room);
+    }
+    
+    public List<Room> getAllRooms() throws Exception{
+        AbstractGenericOperation operation = new GetAllRoomsSO();
+        operation.execute(new Room());
+        return ((GetAllRoomsSO)operation).getRooms();
+    }
+    
+    public List<Person> getAllPersons() throws Exception{
+        AbstractGenericOperation operation = new GetAllPersonsSO();
+        operation.execute(new Person());
+        return ((GetAllPersonsSO)operation).getPersons();
     }
 }

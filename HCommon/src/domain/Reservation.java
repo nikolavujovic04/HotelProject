@@ -142,6 +142,11 @@ public class Reservation implements GenericEntity{
     public boolean equalsWithoutID(Object object) {
         return false;
     }
+
+    @Override
+    public String getJoinCondition() {
+        return "";
+    }
     
     
     

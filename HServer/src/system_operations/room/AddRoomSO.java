@@ -21,7 +21,6 @@ public class AddRoomSO extends AbstractGenericOperation{
             throw new Exception("Invalid param");
         }else{
             Room room = (Room) param;
-            //dodaj ovde proveru dal je null room tj svi njeni atributi
             checkValueConstraints(room);
         }
     }
@@ -35,7 +34,7 @@ public class AddRoomSO extends AbstractGenericOperation{
         boolean exists = checkIfExists(room);
         
         if(exists){
-            throw new Exception("That room alredy exists. Try again");
+            throw new Exception("Soba vec postoji. Pokusajte ponovo.s");
         }
     }
     
@@ -43,7 +42,7 @@ public class AddRoomSO extends AbstractGenericOperation{
         List<Room> rooms = repository.getAll(new Room());
         for (Room check : rooms) {
             if(check!=null){
-                if(check.getTipSobe().equals(room.getTipSobe())){
+                if(check.equalsWithoutID(room)){
                     return true;
                 }
             }

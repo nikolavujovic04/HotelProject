@@ -14,6 +14,7 @@ import controller.Controller;
 import domain.Person;
 import domain.PersonCategorie;
 import domain.Recepcionist;
+import domain.Room;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
@@ -64,6 +65,12 @@ public class ClientRequests extends Thread{
                 return addPersonCategorie(request);
             case ADD_RECEPCIONIST:
                 return addRecepcionist(request);
+            case ADD_ROOM:
+                return addRoom(request); 
+            case GET_ALL_ROOMS:
+                return getAllRooms(request);
+            case GET_ALL_PERSONS:
+                return getAllPersons(request);
             }
         
         return null;
@@ -143,6 +150,51 @@ public class ClientRequests extends Thread{
             ex.printStackTrace();
             response.setResponseType(ResponseType.ERROR);
             response.setException(new Exception(ex.getMessage()));
+        }
+        
+        return response;
+    }
+    
+    private Response addRoom(Request request){
+        Response response = new Response();
+        try {           
+            Room room = (Room)request.getArgument();
+            Controller.getInstance().addRoom(room);
+            response.setResponseType(ResponseType.SUCCESS);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(new Exception(ex.getMessage()));
+        }
+        
+        return response;
+    }
+    
+    private Response getAllRooms(Request request){
+        Response response = new Response();
+        try {      
+            List<Room> requestRooms = Controller.getInstance().getAllRooms();
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResult(requestRooms);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        
+        return response;
+    }
+    
+    private Response getAllPersons(Request request){
+        Response response = new Response();
+        try {      
+            List<Person> requestPersons = Controller.getInstance().getAllPersons();
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResult(requestPersons);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
         }
         
         return response;

@@ -14,6 +14,7 @@ public interface GenericEntity extends Serializable {
     String getInsertValues();
     String getIdName();
     Long getIdValue();
+    String getJoinCondition();
     void setId(Long id);
     GenericEntity getEntityFromResultSet(ResultSet rs);
     boolean equalsWithoutID(Object object);

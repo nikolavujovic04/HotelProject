@@ -125,4 +125,9 @@ public class PersonCategorie implements GenericEntity{
     public String toString() {
         return this.personType;
     } 
+
+    @Override
+    public String getJoinCondition() {
+        return "";
+    }
 }
