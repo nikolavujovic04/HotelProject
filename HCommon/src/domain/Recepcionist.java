@@ -7,6 +7,7 @@ package domain;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  *
@@ -35,6 +36,18 @@ public class Recepcionist implements GenericEntity{
         this.phoneNumber = phoneNumber;
         this.logged = logged;
     }
+    
+    public Recepcionist( String firstName, String lastName, String jmbg, String username, String password, String phoneNumber, boolean logged) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.jmbg = jmbg;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.logged = logged;
+    }
+    
+    
 
     public long getidRecepcionist() {
         return idRecepcionist;
@@ -112,14 +125,13 @@ public class Recepcionist implements GenericEntity{
 
     @Override
     public String getColumnNameForInsert() {
-        return "idRecepcionist,firstName,lastName,jmbg,username,password,phoneNumber,logged";
+        return "firstName,lastName,jmbg,username,password,phoneNumber,logged";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        sb.append(idRecepcionist).append(",")
-                .append("'").append(firstName).append("'").append(",")
+        sb.append("'").append(firstName).append("'").append(",")
                 .append("'").append(lastName).append("'").append(",")
                 .append("'").append(jmbg).append("'").append(",")
                 .append("'").append(username).append("'").append(",")
@@ -141,7 +153,7 @@ public class Recepcionist implements GenericEntity{
 
     @Override
     public void setId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.idRecepcionist = id;
     }
 
     @Override
@@ -157,7 +169,33 @@ public class Recepcionist implements GenericEntity{
 
     @Override
     public boolean equalsWithoutID(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(this == object){
+            return true;
+        }
+        
+        if(object == null){
+            return false;
+        }
+        
+        if(getClass() != object.getClass()){
+            return false;
+        }
+        
+        final Recepcionist recepcionist = (Recepcionist) object;
+        
+        if(!Objects.equals(this.jmbg, recepcionist.jmbg)){
+            return false;
+        }
+        
+        if(!Objects.equals(this.username, recepcionist.username)){
+            return false;
+        }
+        
+        if(!Objects.equals(this.password, recepcionist.password)){
+            return false;
+        }
+        
+        return Objects.equals(this.phoneNumber, recepcionist.phoneNumber);
     }
 
     

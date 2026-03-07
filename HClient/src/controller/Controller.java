@@ -79,6 +79,15 @@ public class Controller {
             throw response.getException();
         }
     }
+    
+    public void addRecepcionist(Recepcionist recepcionist) throws IOException, Exception{
+        Request request = new Request(Operation.ADD_RECEPCIONIST, recepcionist);
+        Response response = Communication.getInstance().addRecepcionist(request);
+        
+        if(response.getResponseType().equals(ResponseType.ERROR)){
+            throw response.getException();
+        }
+    }
         
     public void setCurrentUser(Recepcionist user){
         this.currentRecepcionist = user;

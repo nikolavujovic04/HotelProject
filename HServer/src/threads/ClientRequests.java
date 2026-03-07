@@ -62,6 +62,8 @@ public class ClientRequests extends Thread{
                 return addPerson(request);
             case ADD_PERSON_CATEGORIE:
                 return addPersonCategorie(request);
+            case ADD_RECEPCIONIST:
+                return addRecepcionist(request);
             }
         
         return null;
@@ -121,6 +123,21 @@ public class ClientRequests extends Thread{
         try {           
             PersonCategorie categorie = (PersonCategorie)request.getArgument();
             Controller.getInstance().addPersonCategorie(categorie);
+            response.setResponseType(ResponseType.SUCCESS);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(new Exception(ex.getMessage()));
+        }
+        
+        return response;
+    }
+    
+    private Response addRecepcionist(Request request){
+        Response response = new Response();
+        try {           
+            Recepcionist recepcionist = (Recepcionist)request.getArgument();
+            Controller.getInstance().addRecepcionist(recepcionist);
             response.setResponseType(ResponseType.SUCCESS);
         } catch (Exception ex) {
             ex.printStackTrace();

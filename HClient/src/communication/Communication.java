@@ -53,4 +53,10 @@ public class Communication {
         return (Response)new Receiver(socket).receive();
     }
     
+    public Response addRecepcionist(Request request) throws Exception{
+        new Sender(socket).send(request);
+        System.out.println("Zahtev za kreiranje recepcionara je poslat");
+        return (Response)new Receiver(socket).receive();
+    }
+    
 }
