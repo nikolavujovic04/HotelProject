@@ -60,6 +60,8 @@ public class ClientRequests extends Thread{
                 return getAllCategories(request);
             case ADD_PERSON:
                 return addPerson(request);
+            case ADD_PERSON_CATEGORIE:
+                return addPersonCategorie(request);
             }
         
         return null;
@@ -107,13 +109,27 @@ public class ClientRequests extends Thread{
         }catch(Exception ex){
             ex.printStackTrace();
             response.setResponseType(ResponseType.ERROR);
-            response.setException(ex);
+            response.setException(new Exception(ex.getMessage()));
         }
         
         
         return response;
     }
     
+    private Response addPersonCategorie(Request request){
+        Response response = new Response();
+        try {           
+            PersonCategorie categorie = (PersonCategorie)request.getArgument();
+            Controller.getInstance().addPersonCategorie(categorie);
+            response.setResponseType(ResponseType.SUCCESS);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(new Exception(ex.getMessage()));
+        }
+        
+        return response;
+    }
     
     void stopThread(){
         try {

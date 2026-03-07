@@ -70,6 +70,15 @@ public class Controller {
             throw response.getException();
         }
     }
+    
+    public void addPersonCategorie(PersonCategorie categorie) throws IOException, Exception{
+        Request request = new Request(Operation.ADD_PERSON_CATEGORIE, categorie);
+        Response response = Communication.getInstance().addPersonCategorie(request);
+        
+        if(response.getResponseType().equals(ResponseType.ERROR)){
+            throw response.getException();
+        }
+    }
         
     public void setCurrentUser(Recepcionist user){
         this.currentRecepcionist = user;

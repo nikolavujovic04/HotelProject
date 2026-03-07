@@ -12,5 +12,6 @@ public enum Operation {
     LOGIN, 
     LOG_OUT,
     GET_ALL_CATEGORIES,
-    ADD_PERSON
+    ADD_PERSON,
+    ADD_PERSON_CATEGORIE
 }

@@ -14,6 +14,7 @@ import system_operations.AbstractGenericOperation;
 import system_operations.person.AddPersonSO;
 import system_operations.person.DeletePersonSO;
 import system_operations.person.EditPersonSO;
+import system_operations.personCategorie.AddPersonCategorieSO;
 import system_operations.personCategorie.GetAllCategoriesSO;
 import system_operations.recepcionist.LoginSo;
 import system_operations.recepcionist.LogutSo;
@@ -69,5 +70,10 @@ public class Controller {
     public void editPerson(Person person) throws Exception{
         AbstractGenericOperation operation = new EditPersonSO();
         operation.execute(person);
+    }
+    
+    public void addPersonCategorie(PersonCategorie categorie) throws Exception{
+        AbstractGenericOperation operation = new AddPersonCategorieSO();
+        operation.execute(categorie);
     }
 }

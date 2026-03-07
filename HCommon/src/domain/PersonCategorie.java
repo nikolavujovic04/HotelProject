@@ -7,6 +7,7 @@ package domain;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,19 +60,18 @@ public class PersonCategorie implements GenericEntity{
 
     @Override
     public String getColumnNameForSelect() {
-        return "idCategorie,personType,discount";
+        return "idCategorie,type,discount";
     }
 
     @Override
     public String getColumnNameForInsert() {
-        return "personType,discount";
+        return "type,discount";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        sb.append(id).append(",")
-                .append("'").append(personType).append("'").append(",")
+        sb.append("'").append(personType).append("'").append(",")
                 .append(discount);
         
         return sb.toString();
@@ -79,7 +79,7 @@ public class PersonCategorie implements GenericEntity{
 
     @Override
     public String getIdName() {
-        return "idPersonCategorie";
+        return "idCategorie";
     }
 
     @Override
@@ -89,7 +89,7 @@ public class PersonCategorie implements GenericEntity{
 
     @Override
     public void setId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.id = id;
     }
 
     @Override
@@ -104,15 +104,25 @@ public class PersonCategorie implements GenericEntity{
 
     @Override
     public boolean equalsWithoutID(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(this == object){
+            return true;
+        }
+        
+        if(object == null){
+            return false;
+        }
+        
+        if(getClass() != object.getClass()){
+            return false;
+        }
+        
+        final PersonCategorie categorie = (PersonCategorie) object;
+        
+        return Objects.equals(this.personType,categorie.personType);
     }
 
     @Override
     public String toString() {
         return this.personType;
-    }
-    
-    
-    
-    
+    } 
 }
