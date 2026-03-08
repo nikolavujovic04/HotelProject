@@ -123,6 +123,18 @@ public class Controller {
         }
     }
     
+    public List<Recepcionist> getAllRecepcionists() throws Exception{
+        Request request = new Request(Operation.GET_ALL_RECEPCIONISTS,null);
+        Response response = Communication.getInstance().getAllRecepcionists(request);
+        
+        if(response.getResponseType().equals(ResponseType.SUCCESS)){
+            List<Recepcionist> recepcionsits = (List<Recepcionist>) response.getResult();
+            return recepcionists;
+        }else{
+            throw response.getException();
+        }
+    }
+    
     public void setCurrentUser(Recepcionist user){
         this.currentRecepcionist = user;
     }

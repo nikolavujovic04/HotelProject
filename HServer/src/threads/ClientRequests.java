@@ -200,6 +200,21 @@ public class ClientRequests extends Thread{
         return response;
     }
     
+    private Response getAllRecepcionists(Request request){
+        Response response = new Response();
+        try {      
+            List<Recepcionist> requestRecepcionists = Controller.getInstance().getAllRecepcionists();
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResult(requestRecepcionists);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        
+        return response;
+    }
+    
     void stopThread(){
         try {
             socket.close();

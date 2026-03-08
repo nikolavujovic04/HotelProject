@@ -76,4 +76,10 @@ public class Communication {
         System.out.println("Zahtev za kategorije je poslat");
         return (Response)new Receiver(socket).receive();
     }
+    
+    public Response getAllRecepcionists(Request request) throws Exception{
+        new Sender(socket).send(request);
+        System.out.println("Zahtev za recepcionare je poslat");
+        return (Response)new Receiver(socket).receive();
+    }
 }

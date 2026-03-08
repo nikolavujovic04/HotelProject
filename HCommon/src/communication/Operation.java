@@ -17,5 +17,6 @@ public enum Operation {
     ADD_RECEPCIONIST,
     ADD_ROOM,
     GET_ALL_ROOMS,
-    GET_ALL_PERSONS
+    GET_ALL_PERSONS,
+    GET_ALL_RECEPCIONISTS
 }

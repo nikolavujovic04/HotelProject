@@ -19,6 +19,7 @@ import system_operations.person.GetAllPersonsSO;
 import system_operations.personCategorie.AddPersonCategorieSO;
 import system_operations.personCategorie.GetAllCategoriesSO;
 import system_operations.recepcionist.AddRecepcionistSO;
+import system_operations.recepcionist.GetAllRecepcionists;
 import system_operations.recepcionist.LoginSo;
 import system_operations.recepcionist.LogutSo;
 import system_operations.room.AddRoomSO;
@@ -102,5 +103,11 @@ public class Controller {
         AbstractGenericOperation operation = new GetAllPersonsSO();
         operation.execute(new Person());
         return ((GetAllPersonsSO)operation).getPersons();
+    }
+    
+    public List<Recepcionist> getAllRecepcionists() throws Exception{
+        AbstractGenericOperation operation = new GetAllRecepcionists();
+        operation.execute(new Recepcionist());
+        return ((GetAllRecepcionists)operation).getRecepcionists();
     }
 }
