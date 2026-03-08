@@ -122,7 +122,7 @@ public class Person implements GenericEntity{
 
     @Override
     public String getIdName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "idPerson";
     }
 
     @Override
@@ -181,7 +181,4 @@ public class Person implements GenericEntity{
          return " p JOIN personcategorie c ON p.idCategorie = c.idCategorie";
     }
 
-
-    
-    
 }

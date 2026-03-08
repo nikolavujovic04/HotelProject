@@ -14,15 +14,13 @@ import system_operations.AbstractGenericOperation;
  * @author Nikola
  */
 public class DeletePersonSO extends AbstractGenericOperation{ 
-    
     @Override
     protected void precondition(Object param) throws Exception {
         if (param == null || !(param instanceof Person)) {
             throw new Exception("Invalid param");
-        } else {
-            Person person = (Person) param;
-            checkConstraints(person);
         }
+            /*Person person = (Person) param;
+            checkConstraints(person);*/
     }
 
     @Override
@@ -34,9 +32,9 @@ public class DeletePersonSO extends AbstractGenericOperation{
         boolean exist = checkExistent(person);
         boolean hasReservation = checkReservation(person);
 
-        if (!exist) {
+        /*if (!exist) {
             throw new Exception("Person does not exist.");
-        }
+        }*/
 
         if (hasReservation) {
             throw new Exception("Person has reservations and cannot be deleted.");

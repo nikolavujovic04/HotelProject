@@ -10,6 +10,7 @@ import domain.Person;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 /**
@@ -70,6 +71,11 @@ public class FormViewPerson extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jButton4.setText("Obrisi");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Izmeni");
 
@@ -141,6 +147,27 @@ public class FormViewPerson extends javax.swing.JDialog {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        try {
+            int row = jTable1.getSelectedRow();
+            
+            if(row == -1){
+                JOptionPane.showMessageDialog(this, "Morate selektovati red!");
+                return;
+            }
+            
+            TableModelPerson modelDelete = (TableModelPerson) jTable1.getModel();
+            Person deletePerson = (Person) modelDelete.getPerson(row);
+            Controller.getInstance().deletePerson(deletePerson);
+            System.out.println(deletePerson.getId());
+            modelDelete.removePerson(row);
+            JOptionPane.showMessageDialog(this, "Obrisana je osoba "+deletePerson.getFirstName()+" "+deletePerson.getLastName(), "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            Logger.getLogger(FormViewPerson.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

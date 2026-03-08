@@ -83,7 +83,7 @@ public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEn
                     .append(entity.getIdName())
                     .append("=")
                     .append(entity.getIdValue());
-
+            System.out.println(sb);
             Statement statement = connection.createStatement();
             statement.executeUpdate(sb.toString());
             statement.close();
@@ -91,8 +91,7 @@ public class RepositoryDbGeneric implements repository.db.DbRepository<GenericEn
         catch(SQLException ex){
             ex.printStackTrace();
             throw ex;
-        }
-        
+        }     
     }
 
     @Override

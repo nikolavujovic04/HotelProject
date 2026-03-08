@@ -135,6 +135,15 @@ public class Controller {
         }
     }
     
+    public void deletePerson(Person person) throws IOException, Exception{
+        Request request = new Request(Operation.DELETE_PERSON,person);
+        Response response = Communication.getInstance().deletePerson(request);
+        
+        if(response.getResponseType().equals(ResponseType.ERROR)){
+            throw response.getException();
+        }
+    }
+    
     public void setCurrentUser(Recepcionist user){
         this.currentRecepcionist = user;
     }

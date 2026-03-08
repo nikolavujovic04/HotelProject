@@ -68,7 +68,7 @@ public class Controller {
         operation.execute(person);
     }
     
-    public void deletePerson(Person person) throws Exception{
+    public void deletePerson(Person person) throws Exception, Exception, Exception, Exception{
         AbstractGenericOperation operation = new DeletePersonSO();
         operation.execute(person);
     }

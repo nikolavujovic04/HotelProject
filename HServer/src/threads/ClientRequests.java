@@ -72,7 +72,9 @@ public class ClientRequests extends Thread{
             case GET_ALL_PERSONS:
                 return getAllPersons(request);
             case GET_ALL_RECEPCIONISTS:
-                return getAllRecepcionists(request);
+                return getAllRecepcionists();
+            case DELETE_PERSON:
+                return deletePerson(request);
             }
         
         return null;
@@ -202,12 +204,27 @@ public class ClientRequests extends Thread{
         return response;
     }
     
-    private Response getAllRecepcionists(Request request){
+    private Response getAllRecepcionists(){
         Response response = new Response();
         try {      
             List<Recepcionist> requestRecepcionists = Controller.getInstance().getAllRecepcionists();
             response.setResponseType(ResponseType.SUCCESS);
             response.setResult(requestRecepcionists);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        
+        return response;
+    }
+    
+    private Response deletePerson(Request request){
+        Response response = new Response();
+        try {     
+            Person person = (Person)request.getArgument();
+            Controller.getInstance().deletePerson(person);
+            response.setResponseType(ResponseType.SUCCESS);
         } catch (Exception ex) {
             ex.printStackTrace();
             response.setResponseType(ResponseType.ERROR);

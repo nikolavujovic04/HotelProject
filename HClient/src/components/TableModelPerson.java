@@ -114,9 +114,13 @@ public class TableModelPerson extends AbstractTableModel{
         fireTableRowsInserted(persons.size()-1, persons.size()-1);
     }
     
-    public void removeProduct(int row){
+    public void removePerson(int row){
         persons.remove(row);
         fireTableDataChanged();
+    }
+    
+    public Person getPerson(int row){
+        return persons.get(row);
     }
     
     public List<Person> getPersons(){
