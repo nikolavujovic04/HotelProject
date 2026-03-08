@@ -4,12 +4,17 @@
  */
 package form;
 
-/**
- *
- * @author Nikola
- */
-public class FormViewRecepcionists extends javax.swing.JDialog {
+import components.TableModelRecepcionists;
+import controller.Controller;
+import domain.Recepcionist;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
+public class FormViewRecepcionists extends javax.swing.JDialog {
+    TableModel model;
     /**
      * Creates new form FormViewRecepcionists
      */
@@ -18,6 +23,8 @@ public class FormViewRecepcionists extends javax.swing.JDialog {
         initComponents();
         pack();
         setLocationRelativeTo(null);
+        model = new TableModelRecepcionists(null);
+        jTable1.setModel(model);
     }
 
     /**
@@ -123,50 +130,15 @@ public class FormViewRecepcionists extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        try {
+            List<Recepcionist> recepcionists = Controller.getInstance().getAllRecepcionists();
+            model = new TableModelRecepcionists(recepcionists);
+            jTable1.setModel(model);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Nije moguce prikazati recepcionare", "Greska!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormViewRecepcionists.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormViewRecepcionists.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormViewRecepcionists.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormViewRecepcionists.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FormViewRecepcionists dialog = new FormViewRecepcionists(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

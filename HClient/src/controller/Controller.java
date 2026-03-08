@@ -128,7 +128,7 @@ public class Controller {
         Response response = Communication.getInstance().getAllRecepcionists(request);
         
         if(response.getResponseType().equals(ResponseType.SUCCESS)){
-            List<Recepcionist> recepcionsits = (List<Recepcionist>) response.getResult();
+            List<Recepcionist> recepcionists = (List<Recepcionist>) response.getResult();
             return recepcionists;
         }else{
             throw response.getException();

@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelRecepcionists extends AbstractTableModel{
     private List<Recepcionist> recepcionists;
     private String[] columnNames = new String[]{"ID", "Ime", "Prezime", "jmbg", "Korisnicko ime", "Broj telefona", "Ulogovan"};
-    private Class[] columnClass = new Class[]{Long.class, String.class, String.class,String.class,String.class,String.class};
+    private Class[] columnClass = new Class[]{Long.class, String.class, String.class,String.class,String.class,String.class,String.class};
     
     public TableModelRecepcionists(List<Recepcionist> recepcionists){
         this.recepcionists = recepcionists;
@@ -45,7 +45,7 @@ public class TableModelRecepcionists extends AbstractTableModel{
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        if(columnIndex>columnClass.length){
+        if(columnIndex>=columnClass.length){
             return Object.class;
         }else{
             return columnClass[columnIndex];
@@ -109,6 +109,7 @@ public class TableModelRecepcionists extends AbstractTableModel{
                 break;
             case 5:
                 recepcionist.setPhoneNumber(aValue.toString());
+                break;
             case 6:
                 if(aValue.toString().equals("DA")){
                     recepcionist.setLogged(true);

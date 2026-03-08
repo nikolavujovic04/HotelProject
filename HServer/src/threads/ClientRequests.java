@@ -71,6 +71,8 @@ public class ClientRequests extends Thread{
                 return getAllRooms(request);
             case GET_ALL_PERSONS:
                 return getAllPersons(request);
+            case GET_ALL_RECEPCIONISTS:
+                return getAllRecepcionists(request);
             }
         
         return null;
