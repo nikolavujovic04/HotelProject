@@ -92,17 +92,21 @@ public class TableModelCategories extends AbstractTableModel{
         }
     }
     
-    public void addPerson(PersonCategorie categorie){
+    public void addCategorie(PersonCategorie categorie){
         this.categories.add(categorie);
         fireTableRowsInserted(categories.size()-1, categories.size()-1);
     }
     
-    public void removeProduct(int row){
+    public void removeCategorie(int row){
         categories.remove(row);
         fireTableDataChanged();
     }
     
-    public List<PersonCategorie> getPersons(){
+    public PersonCategorie getCategorie(int row){
+        return categories.get(row);
+    }
+    
+    public List<PersonCategorie> getCategories(){
         return categories;
     }
 }

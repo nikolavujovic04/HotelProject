@@ -88,4 +88,10 @@ public class Communication {
         System.out.println("Zahtev za brisanje osobe je poslat");
         return (Response)new Receiver(socket).receive();
     }
-}
+    
+    public Response deleteCategorie(Request request) throws Exception{
+        new Sender(socket).send(request);
+        System.out.println("Zahtev za brisanje kategorije je poslat");
+        return (Response)new Receiver(socket).receive();
+    }
+}   

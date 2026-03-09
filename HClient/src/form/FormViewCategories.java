@@ -113,7 +113,22 @@ public class FormViewCategories extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            int row = jTable1.getSelectedRow();
+            
+            if(row == -1){
+                JOptionPane.showMessageDialog(this, "Morate selektovati red!");
+                return;
+            }
+            
+            TableModelCategories modelDelete = (TableModelCategories) jTable1.getModel();
+            PersonCategorie deleteCategorie = (PersonCategorie) modelDelete.getCategorie(row);
+            Controller.getInstance().deleteCategorie(deleteCategorie);
+            System.out.println(deleteCategorie.getId());
+            modelDelete.removeCategorie(row);
+        } catch (Exception ex) {
+            Logger.getLogger(FormViewCategories.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

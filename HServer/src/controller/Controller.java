@@ -17,6 +17,7 @@ import system_operations.person.DeletePersonSO;
 import system_operations.person.EditPersonSO;
 import system_operations.person.GetAllPersonsSO;
 import system_operations.personCategorie.AddPersonCategorieSO;
+import system_operations.personCategorie.DeletePersonCategorieSO;
 import system_operations.personCategorie.GetAllCategoriesSO;
 import system_operations.recepcionist.AddRecepcionistSO;
 import system_operations.recepcionist.GetAllRecepcionists;
@@ -71,6 +72,11 @@ public class Controller {
     public void deletePerson(Person person) throws Exception, Exception, Exception, Exception{
         AbstractGenericOperation operation = new DeletePersonSO();
         operation.execute(person);
+    }
+    
+    public void deleteCategorie(PersonCategorie categorie) throws Exception, Exception, Exception, Exception{
+        AbstractGenericOperation operation = new DeletePersonCategorieSO();
+        operation.execute(categorie);
     }
     
     public void editPerson(Person person) throws Exception{

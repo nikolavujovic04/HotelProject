@@ -144,6 +144,15 @@ public class Controller {
         }
     }
     
+    public void deleteCategorie(PersonCategorie categorie) throws IOException, Exception{
+        Request request = new Request(Operation.DELETE_CATEGORIE,categorie);
+        Response response = Communication.getInstance().deleteCategorie(request);
+        
+        if(response.getResponseType().equals(ResponseType.ERROR)){
+            throw response.getException();
+        }
+    }
+    
     public void setCurrentUser(Recepcionist user){
         this.currentRecepcionist = user;
     }

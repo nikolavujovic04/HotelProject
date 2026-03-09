@@ -75,6 +75,8 @@ public class ClientRequests extends Thread{
                 return getAllRecepcionists();
             case DELETE_PERSON:
                 return deletePerson(request);
+            case DELETE_CATEGORIE:
+                return deleteCategorie(request);
             }
         
         return null;
@@ -224,6 +226,21 @@ public class ClientRequests extends Thread{
         try {     
             Person person = (Person)request.getArgument();
             Controller.getInstance().deletePerson(person);
+            response.setResponseType(ResponseType.SUCCESS);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        
+        return response;
+    }
+    
+    private Response deleteCategorie(Request request){
+        Response response = new Response();
+        try {     
+            PersonCategorie categorie = (PersonCategorie)request.getArgument();
+            Controller.getInstance().deleteCategorie(categorie);
             response.setResponseType(ResponseType.SUCCESS);
         } catch (Exception ex) {
             ex.printStackTrace();

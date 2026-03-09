@@ -31,23 +31,23 @@ public class DeletePersonCategorieSO extends AbstractGenericOperation{
     }
     
     private void checkConstraints(PersonCategorie categorie) throws Exception{
-        boolean exist = checkExistent(categorie);
+        /*boolean exist = checkExistent(categorie);
         boolean inPerson = checkInPerson(categorie);
         if(!exist){
             throw new Exception("Categorie does not exist");
         }
         else if(inPerson){
             throw new Exception("Can not delete categorie.");
-        }
+        }*/
     }
     
-    private boolean checkExistent(PersonCategorie categorie) throws Exception{
+    /*private boolean checkExistent(PersonCategorie categorie) throws Exception{
         PersonCategorie exist = (PersonCategorie) repository.getById(categorie);
         if(exist==null){
             return false;
         }
         return true;
-    }
+    }*/
     
     private boolean checkInPerson(PersonCategorie categorie) throws Exception{
         List<Person> persons = repository.getAll(new Person());
